@@ -7,7 +7,7 @@ export class Name extends Base {
     return name.isValid();
   }
 
-  static getFunctions() {
+  static filters() {
     return {
       'Suppress First Name': Name.suppressFirst,
       'Suppress Last Name': Name.suppressLast,
