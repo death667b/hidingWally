@@ -8,6 +8,10 @@ export default class Name extends Base {
     return name.isValid();
   }
 
+  static getColumnRegex() {
+    return new RegExp('name', 'i');
+  }
+
   static filters() {
     return {
       'Suppress First Name': Name.suppressFirst,

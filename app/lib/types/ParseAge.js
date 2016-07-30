@@ -6,6 +6,10 @@ export default class ParseAge extends Base {
     return !!(typeof value === 'number' && value >= 0);
   }
 
+  static getColumnRegex() {
+    return new RegExp('age', 'i');
+  }
+
   static filters() {
     return {
       'Generalise Age': ParseAge.generaliseAge,

@@ -7,6 +7,10 @@ export class Base {
     };
   }
 
+  static getColumnRegex() {
+    return new RegExp('*');
+  }
+
   static isValid(value) {
     // Base class can process everything
     return true;

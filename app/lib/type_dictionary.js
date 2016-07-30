@@ -6,19 +6,7 @@
  *  - a function which does how we decide to identify the columns
  *  TODO --- Identify this
  */
-
-/**
- * Contains all regex matches to defined types
- * WARNING: Ideally we will keep these as specific and safe as possible.
- * @type {Object}
- */
-const type_dictionary = {
-  id: /id$/i,
-  age: /age/i,
-  date: /date|year|time/i,
-  address: /place|address|location|post.*code$/i,
-  name: /name/i,
-};
+import { types } from './types';
 
 /**
  * Contains all methods that use the dictionary.
@@ -34,8 +22,8 @@ export class Dictionary {
     const matches = [];
 
     // cycle through dictionary keys. test for match. push matches.
-    type_dictionary.keys().forEach(key => {
-      if (columnKey.match(type_dictionary[key])) {
+    types.keys().forEach(type => {
+      if (type.getColumnRegex().test(columnKey)) {
         matches.push(key);
       }
     });
