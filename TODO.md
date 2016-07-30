@@ -1,0 +1,4 @@
+- [] Add body parser middleware
+- [x] Add regex methods to each of the Type classes
+- [x] remove `type_dictionary` from `Dictionary.js`
+- [x] rename `type_dictionary` to `Dictionary`
