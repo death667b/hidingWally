@@ -17,10 +17,9 @@ export class CSV {
       return File.readLine(pathname)
         .then(line => {
           const headers = line.split(',');
-
-          return headers.map(header => ({
-            [header]: Dictionary.getColumnType(header),
-          }));
+          const typedHeaders = {};
+          headers.forEach(header => typedHeaders[header] = Dictionary.getColumnType(header));
+          return typedHeaders;
         })
   }
 }
