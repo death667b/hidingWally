@@ -14,16 +14,12 @@ export class CSV {
    * @return {Promise} (Array) returns an array of objects { column: type }.
    */
   static parseColumnKeys(pathname) {
-    return new Promise(resolve => {
-      File.readLine(pathname)
+      return File.readLine(pathname)
         .then(line => {
           const headers = line.split(',');
-
-          resolve(headers.map(header => ({
-            [header]: Dictionary.getColumnType(header),
-          })));
+          const typedHeaders = {};
+          headers.forEach(header => typedHeaders[header] = Dictionary.getColumnType(header));
+          return typedHeaders;
         })
-        .catch(error => { throw error; });
-    });
   }
 }
