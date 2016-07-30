@@ -10,7 +10,7 @@ const compiler = webpack(config);
 const app = express();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '/uploads');
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, `${file.fieldname}-${Date.now()}`);
@@ -33,15 +33,19 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', upload.single('file'), (req, res) => {
+  console.log(req.file);
   if (!req.file) return res.status(400).send('Invalid File');
   const filePath = req.file.path;
-  res.send(headers);
+  console.log(filePath);
+  res.send(filePath);
 });
+
+
 
 // Do "hot-reloading" of express stuff on the server
 // Throw away cached modules and re-require next time
 // Ensure there's no important state in there!
-const watcher = chokidar.watch('./server');
+const watcher = chokidar.watch('.', {ignored: /[\/\\]\.|node_modules/});
 
 watcher.on('ready', function() {
   watcher.on('all', function() {

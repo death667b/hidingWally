@@ -32,7 +32,6 @@ export class Root extends Component {
     if (this.state.toast){
       const toast = this.state.toast;
       // this.setState({ toast: null });
-      setTimeout(() => this.clearToast(), 3000);
       return <Toast clear={this.clearToast} type={toast.type} message={toast.message} />
     }
   }
