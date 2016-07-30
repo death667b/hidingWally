@@ -23,8 +23,17 @@ export class File {
           character === '\n' ?
             stream.close() : position += character.length;
         })
-        .on('close', () => resolve(line.slice()))
+        .on('close', () => resolve(line.slice(0, position - 1)))
         .on('error', error => { throw error; });
     });
+  }
+
+  /**
+   * returns a file read stream
+   * @param  {[type]} pathname [description]
+   * @return {ReadStream} a readable stream (see node ReadStream)
+   */
+  static readStream(pathname) {
+    return fs.createReadStream(pathname, { encoding: 'utf8' });
   }
 }

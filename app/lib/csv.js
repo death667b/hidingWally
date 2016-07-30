@@ -1,4 +1,5 @@
-// import fastCSV from 'fast-csv';
+/* eslint camelcase: 0 */
+import csv from 'fast-csv';
 
 import { File } from './file';
 import { Dictionary } from './type_dictionary';
@@ -14,12 +15,47 @@ export class CSV {
    * @return {Promise} (Array) returns an array of objects { column: type }.
    */
   static parseColumnKeys(pathname) {
-      return File.readLine(pathname)
+    return new Promise(resolve => {
+      File.readLine(pathname)
         .then(line => {
           const headers = line.split(',');
-          const typedHeaders = {};
-          headers.forEach(header => typedHeaders[header] = Dictionary.getColumnType(header));
-          return typedHeaders;
+
+          resolve(headers.map(header => ({
+            [header]: Dictionary.getColumnType(header),
+          })));
         })
+        .catch(error => { throw error; });
+    });
+  }
+
+  /**
+   * transforms a csv file and returns the new pathname.
+   * @param  {String} pathname - the pathname of the original csv
+   * @param  {Object} transformer - methods with keys matching the rows
+   * @return {String} the pathname to the new file.
+   */
+  static transformCSV(pathname, transformer) {
+    // transforms the stream
+    const stream_transform = csv
+      .createWriteStream({ headers: true })
+      .transform(row => {
+        const new_row = {};
+
+        row.keys().forEach(value => {
+          new_row.push({ [value]: transformer[value]() });
+        });
+      });
+
+    // output stream
+    const new_file_path = `${pathname}_dus_good.csv`;
+    const stream_output = File.readStream(new_file_path);
+
+    // create new csv
+    csv
+      .fromPath(pathname)
+      .pipe(stream_transform)
+      .pipe(stream_output);
+
+    return new_file_path;
   }
 }
