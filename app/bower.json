@@ -1,0 +1,18 @@
+{
+  "name": "daaasgud",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "David Buchan-Swanson <david.buchanswanson@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/leonp1991/hidingWally",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
