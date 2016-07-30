@@ -1,8 +1,7 @@
 import 'babel-polyfill';
 import express from 'express';
 import multer from 'multer';
-
-import { ParseDate } from './lib/filterDOB';
+import pug from 'pug';
 
 const app = express();
 const storage = multer.diskStorage({
@@ -30,13 +29,13 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', upload.single('file'), (req, res) => {
+  if (!req.file) return res.status(400).send('Invalid File');
   const filePath = req.file.path;
-  res.send(`file path is ${filePath}.`);
-});
-
-
-app.get('/ian', (req, res) => {
-  res.send(ParseDate.isValid('20 Mar 80'));
+  const headers = pug.renderFile('./views/partials/_headerTypes.pug', {headers: {
+    'Name': ['Name'],
+    'Test': ['Test', 'Date']
+  }});
+  res.send(headers);
 });
 
 app.listen(3000, () => {

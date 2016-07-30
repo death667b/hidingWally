@@ -1,6 +1,6 @@
 import { Base } from './Base';
 
-export class ParseDate extends Base {
+export default class ParseDate extends Base {
 
 	static filter(){
 		return {
