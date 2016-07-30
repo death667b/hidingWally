@@ -1,4 +1,11 @@
+import Base from './Base';
+
 export class ParseDate extends Base{
+
+	constructor() {
+		super();
+	}
+
 	static filter(){
 		return {
 			'Round To Closest 5': ParseDate.closest5,
@@ -24,11 +31,11 @@ export class ParseDate extends Base{
 	}
 
 	static closest5(date) {
-		return ParseDate.filterDate(2, date, 5);
+		return ParseDate.filterDate(3, date, 5);
 	}
 
 	static closest20(date) {
-		return ParseDate.filterDate(2, date, 20);
+		return ParseDate.filterDate(3, date, 20);
 	}
 
 	/**
@@ -132,4 +139,11 @@ export class ParseDate extends Base{
 		var dob = new Date(dobString);
 		return dob.getFullYear();
 	}
+
+	static cleanDate(date){
+
+		return "25 feb 1980";
+	}
 }
+
+

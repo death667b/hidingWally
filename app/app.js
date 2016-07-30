@@ -2,6 +2,8 @@ import 'babel-polyfill';
 import express from 'express';
 import multer from 'multer';
 
+import { ParseDate } from './lib/filterDOB';
+
 const app = express();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -32,6 +34,13 @@ app.post('/upload', upload.single('file'), (req, res) => {
   res.send(`file path is ${filePath}.`);
 });
 
+
+app.get('/ian', (req, res) => {
+  res.send(ParseDate.isValid('20 Mar 80'));
+});
+
 app.listen(3000, () => {
   console.info('Listening on http://localhost:3000');
 });
+
+
