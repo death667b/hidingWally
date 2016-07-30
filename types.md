@@ -1,6 +1,6 @@
 # type system
 
-for part of the system to identify what procceses are applicable to the data we will need to define a type system.
+for part of the system to identify what processes are applicable to the data we will need to define a type system.
 
 ## types
 
@@ -12,6 +12,6 @@ for part of the system to identify what procceses are applicable to the data we 
 	FirstName
 	LastName
 
-### gerneric types
+### generic types
 	String
 	Number
