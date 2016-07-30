@@ -1,8 +1,8 @@
 /* eslint camelcase: 0 */
 import csv from 'fast-csv';
 
-import { File } from './file';
-import { Dictionary } from './type_dictionary';
+import { File } from '../file';
+import { Dictionary } from '../type_dictionary';
 
 /**
  * This static class will provide operations for csv files.
