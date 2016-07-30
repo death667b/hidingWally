@@ -6,7 +6,7 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 
 app.use('/', (req, res) => {
-  res.render('index');
+  res.render('index', {name: 'david', test: function(){return 'x'}});
 });
 
 app.listen(3000, () => {
