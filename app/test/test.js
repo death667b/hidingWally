@@ -14,4 +14,4 @@ converter.on("end_parsed", function (jsonArray) {
 });
  
 //read from file 
-require("fs").createReadStream('../csv/fakeNamesAddress.csv').pipe(converter);
+require("fs").createReadStream('../csv/britishConvictRegistersOrig.csv').pipe(converter);
