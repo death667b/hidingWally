@@ -40,6 +40,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 app.use('/components', express.static('bower_components'));
 app.use('/favi', express.static('favi'));
+app.use('/css', express.static('css'));
 
 app.get('/', (req, res) => {
   res.render('index');

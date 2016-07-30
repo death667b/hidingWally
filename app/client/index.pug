@@ -3,6 +3,7 @@ html(lang="en")
     head
         title DAAASGUD
         link(rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" href="/css/style.css")
         meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
         link(rel="apple-touch-icon" sizes="180x180" href="/favi/apple-icon-180x180.png")
         link(rel="icon" type="image/png" sizes="192x192"  href="/favi/android-icon-192x192.png")
@@ -22,13 +23,13 @@ html(lang="en")
                         | Home
                         span.sr-only (current)
         .jumbotron
-            h1.display-3 DAASGUD
-            p.lead is a toolkit for data anonymisation. It lets you choose what you want to anonymise and to what granularity.
-        .container
+            div.row
+                div.col-xl-12
+                    h1.display-3 DAASGUD
+                div.col-xl-12
+                    p.lead.text-center is a toolkit for data anonymisation. It lets you choose what you want to anonymise and to what granularity.
+        div.container
             #app
-        footer.footer.bg-inverse
-            div.container
-                p.text-muted TEXT HERE
 
         script(type="application/javascript" src="/components/jquery/dist/jquery.js")
         script(type="application/javascript" src="/components/tether/dist/js/tether.js")

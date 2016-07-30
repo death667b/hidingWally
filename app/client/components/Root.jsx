@@ -40,10 +40,10 @@ export class Root extends Component {
     return (
       <div className="root">
         <div className="row">
-          <div className="col-xl-3">
+          <div className="col-xl-4">
             <img src="/favi/android-icon-192x192.png" alt="Anon"/>
           </div>
-          <div className="col-xl-9">
+          <div className="col-xl-8">
             {this.getToast()}
             <Uploader showToast={this.showToast}/>
           </div>
