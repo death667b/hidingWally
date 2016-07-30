@@ -10,14 +10,24 @@ export class ParseAge extends Base {
 		};
 	}
 	/**
-	 * Test if supplied string is in a valid date format
-	 *	@param {String} date to test
+	 * Test is age is a number and a value of 1 or greater
+	 *	@param {String} age to test
 	 *	@return {Boolean} True if valid date
 	 */
 	static isValid(age){
-		if (typeof age !== 'number' && age < 1) {
+		if (typeof age === 'undefined') {
+			return false;
+		} 
+
+		if (isNaN(parseInt(age))) {
 			return false;
 		}
+
+		if (parseInt(age) < 1) {
+			return false;
+		}
+
+		return true;
 	}
 
 	static closest10(date) {
@@ -31,6 +41,25 @@ export class ParseAge extends Base {
 	static closest20(date) {
 		return ParseAge.filterDate(3, date, 20);
 	}
+
+	static filterAge(age, range){
+		if (!ParseAge.isValid(age)){
+			return false;
+		}
+
+			
+
+
+
+
+	}
+
+
+
+
+
+
+
 
 	/**
 	 * Filters a DOB based on several options
@@ -112,26 +141,6 @@ export class ParseAge extends Base {
 			default:
 				return false;
 		}
-	}
-
-	/**
-	 * Returns the month number
-	 * @param {String} Date as a valid string
-	 * @return {Number} The month number
-	 */
-	static getMonth(dobString){
-		var dob = new Date(dobString);
-		return dob.getMonth()+1;
-	}
-
-	/**
-	 * Returns the full year. eg 1980
-	 * @param {String} Date as a valid string
-	 * @return {Number} 4 digit year
-	 */
-	static getYear(dobString){
-		var dob = new Date(dobString);
-		return dob.getFullYear();
 	}
 }
 
