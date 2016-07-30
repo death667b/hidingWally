@@ -18,7 +18,7 @@ export class Root extends Component {
       toast: {
         type,
         message,
-      }
+      },
     });
   }
 
@@ -32,7 +32,12 @@ export class Root extends Component {
     if (this.state.toast){
       const toast = this.state.toast;
       // this.setState({ toast: null });
-      return <Toast clear={this.clearToast} type={toast.type} message={toast.message} />
+      return (<Toast
+        clear={this.clearToast}
+        type={toast.type}
+        message={toast.message}
+        timeOut={2000}
+      />);
     }
   }
 
