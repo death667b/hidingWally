@@ -48,7 +48,15 @@ app.get('/', (req, res) => {
 app.post('/upload', upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).send('Invalid File');
   const filePath = req.file.path;
-  res.send(headers);
+
+  CSV.getColumnKeys(filePath)
+    .then(columns => {
+      columns.forEach(column => { /* eslint no-param-reassign: 0 */
+        column.filters = types.getFilterKeys(column.type);
+      });
+
+      res.send(/* TODO: send the UI with operations */);
+    });
 });
 
 app.post('/transform', (req, res) => {

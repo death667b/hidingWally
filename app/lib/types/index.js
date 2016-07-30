@@ -14,4 +14,6 @@ fs
     types[typeName] = Type.default;
   });
 
+types.getFilterKeys = type => types[type].filters();
+
 export { types };

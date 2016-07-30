@@ -4,29 +4,13 @@ import csv from 'fast-csv';
 import { File } from '../file';
 import { Dictionary } from '../type_dictionary';
 
+import { types } from '../types';
+
 /**
  * This static class will provide operations for csv files.
  */
 export class CSV {
 
-  /**
-   * returns the parsed csv as an object, formatted with column keys.
-   * @param  {String} pathname - the path to the file.
-   * @return {Promise} (Array) returns an array of objects { column: type }.
-   */
-  static parseColumnKeys(pathname) {
-    return new Promise(resolve => {
-      File.readLine(pathname)
-        .then(line => {
-          const headers = line.split(',');
-
-          resolve(headers.map(header => ({
-            [header]: Dictionary.getColumnType(header),
-          })));
-        })
-        .catch(error => { throw error; });
-    });
-  }
 
   /**
    * transforms a csv file and returns the new pathname.
@@ -58,4 +42,44 @@ export class CSV {
 
     return new_file_path;
   }
+
+
+  /**
+   * returns the parsed csv as an object, formatted with column keys.
+   * @param  {String} pathname - the path to the file.
+   * @return {Promise} (Array) returns an array of objects { column: type }.
+   */
+  static parseColumnKeys(pathname) {
+    return new Promise(resolve => {
+      File.readLine(pathname)
+        .then(line => {
+          const headers = line.split(',');
+
+          resolve(headers.map(header => ({
+            [header]: Dictionary.getColumnType(header),
+          })));
+        })
+        .catch(error => { throw error; });
+    });
+  }
+
+  /**
+   * helper method: returns a transformer object for used by
+   * the transform function.
+   * @param  {Array} selectors - set of objects used to select
+   * transform funcitons.
+   * @param  {Object} types - set of type classes.
+   * @return {Object} a set of column identified transform functions.
+   */
+  function createTransformer(selectors, types) {
+    const transformer = {}
+
+    selectors.forEach(selector => {
+      transformer[selector.column] = types[selector.type]
+        .filters()[selector.method]
+    })
+
+    return transformer;
+  }
+
 }
