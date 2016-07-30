@@ -2,8 +2,8 @@ class Base {
 
   static filters() {
     return {
-      suppress: suppress,
-      doNothing: doNothing
+      'Suppress': suppress,
+      'Do nothing': doNothing,
     };
   }
 
