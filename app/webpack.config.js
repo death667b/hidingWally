@@ -1,19 +1,20 @@
+import webpack from 'webpack';
+
 module.exports = {
   entry: [
     'babel-polyfill',
-    './app.js',
+    'webpack-hot-middleware/client',
+    './client/index.jsx',
   ],
   devtool: 'eval-source-map',
   output: {
     path: __dirname,
-    filename: 'server.js',
+    publicPath: '/',
+    filename: 'bundle.js',
   },
-  externals: [require('webpack-node-externals')()],
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ["node_modules", "bower_components"],
   },
-  target: 'node',
   module: {
     loaders: [
       { // Babelify the javascript
@@ -23,7 +24,9 @@ module.exports = {
         query: {
           babelrc: false,
           presets: [
+            'react',
             'es2015',
+            'stage-0',
           ],
         },
       },
@@ -36,5 +39,10 @@ module.exports = {
         loader: 'pug-loader',
       },
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
 };
