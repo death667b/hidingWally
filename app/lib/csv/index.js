@@ -71,7 +71,7 @@ export class CSV {
    * @param  {Object} types - set of type classes.
    * @return {Object} a set of column identified transform functions.
    */
-  function createTransformer(selectors, types) {
+  static createTransformer(selectors, types) {
     const transformer = {}
 
     selectors.forEach(selector => {
