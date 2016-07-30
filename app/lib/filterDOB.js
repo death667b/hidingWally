@@ -27,23 +27,37 @@ class parseDate {
 	 *   Option 1: Suppress Date
 	 *     Format:  parseDate.filterDate(1, DOB, Charcter to Replace)
 	 *   Option 2: Filter Date with default year filter (10 Years)
-	 *     Format:  parseDAte.filterDate(2, DOB)
+	 *     Format:  parseDate.filterDate(2, DOB)
 	 *   Option 3: Filter Date with set year range (example 5 years)
 	 *     Format:  parseDate.filterDate(3, DOB, 5)
 	 *   Option 4: Filter Date with year and month ranges (example 5 years and months)
 	 *     Format:  parseDate.filterDate(4, DOB, 5, 5)
+	 *   
+	 * Will return false on any invalid options or values
 	 * 
 	 * @param {Numner} option Option selected
 	 * @param {String} dob Valid DOB
-	 * @param {String} option3 (Option 1) Character suppress (Option 2 or higher) Year range
+	 * @param {String} input3 (Option 1) Character suppress (Option 2 or higher) Year range
 	 * @param {Number} monthRange If no month givern, defaults to 0
-	 * @return {String} Filtered DOB
+	 * @return {String} Filtered DOB as string ir False on error
 	 */
-	static filterDate(option, dob, option3, monthRange){
+	static filterDate(option, dob, input3, monthRange){
+		if (option < 1 && option > 4) {
+			return false;
+		}
+
+		if (typeof dob != 'string') {
+			return false;
+		}
+
 		if (option == 1){
-			return suppressDate(option3);
+			return suppressDate(input3);
 		} else {
-			var yearRange = option3;
+			var yearRange = input3;
+		}
+
+		if (!isDate(dob)){
+			return false;
 		}
 
 		yearRange = (yearRange < 0) ? 1 : yearRange;
@@ -68,13 +82,16 @@ class parseDate {
 		var maxYear = minYear + (yearRange-1);
 
 		
-
-
-
-		//console.log("Year range: " + minYear + " >= dobYear <= " + maxYear);
-		//console.log("Month range: " + minMonth + " >= dobMonth <= " + maxMonth);
-
-		return "return string";
+		switch(option){
+			case 2:
+				return "option 2";
+			case 3:
+				return "option 3";
+			case 4:
+				return "option 4";
+			default:
+				return false;
+		}
 	}
 
 	/**
@@ -98,10 +115,4 @@ class parseDate {
 	}
 }
 
-//var dob1 = "25-dec-00";
-
-//var yearTRange = 5;
-//var monthTRange = 5;
-//console.log(filterDate.getYear("25 dec 1980"));
-
-//console.log(filterDOB(dob1, yearTRange, 5));
+console.log();
