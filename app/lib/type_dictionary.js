@@ -13,8 +13,8 @@
  * @type {Object}
  */
 const type_dictionary = {
-  id : /id$/i,
-  age : /age/i,
+  id: /id$/i,
+  age: /age/i,
   date: /date|year|time/i,
   address: /place|address|location|post.*code$/i,
   name: /name/i,
@@ -31,12 +31,12 @@ export class Dictionary {
    * @return {String} the column type identified.
    */
   static getColumnType(columnKey) {
-    const matches = []
+    const matches = [];
 
     // cycle through dictionary keys. test for match. push matches.
     type_dictionary.keys().forEach(key => {
       if (columnKey.indexOf(type_dictionary[key]) !== -1) {
-        matches.push(key)
+        matches.push(key);
       }
     });
 

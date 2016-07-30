@@ -2,13 +2,8 @@
 
 ``` javascript
 
-{
-  column_keys: [
-    { column: type String Required },
-  ],
-  records: [
-    { column: value String Optional, },
-  ],
-}
+[
+  { column: type String Required },
+],
 
 ```
