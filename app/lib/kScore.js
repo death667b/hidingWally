@@ -1,9 +1,15 @@
+var _ = require('lodash')
+// import _ from 'lodash'
+
+
 function kScore(records){
     // find array of distinct rows
         // for each distinct row in array
             // find the min number of occurences
                 // assign this to kMin
                     // break if this ever equals 1 and return 1 (minimum score)
+
+    return _.chain(records).countBy(obj => JSON.stringify(obj)).values().min().value()
 }
 
 // function uniqueRows(array){
@@ -68,12 +74,12 @@ function objEqual(a, b) {
     return true
 } 
 
-var records = [
-{"x": 1, "y": 2, "z": 3},
-{"x": 1, "y": 2, "z": 3},
-{"x": 4, "y": 5, "z": 6},
-{"x": 5, "z": 8}
-]
+// var records = [
+// {"x": 1, "y": 2, "z": 3},
+// {"x": 1, "y": 2, "z": 3},
+// {"x": 4, "y": 5, "z": 6},
+// {"x": 5, "z": 8}
+// ]
 
 function containsObject(obj, list){
     for (i = 0; i < list.length + 1; i++){
@@ -87,21 +93,24 @@ function containsObject(obj, list){
     }
 }
 
-var array = uniqueRows(records)
+// var array = uniqueRows(records)
 // console.log (containsObject(records[0], records))
 // console.table(records)
-console.table(array)
+// console.table(array)
 
 
 
-// testing zone
-a = {'a': 1}
-b = {'b': 1}
-arr = [a, b]
-arr2 = [b]
-arr3 = [a, a, b, b]
-objEqual(a, arr[0]) // true
-objEqual(a, arr[1]) // false
-inArray(arr, a, objEqual) // true
-inArray(arr2, a, objEqual) // false
-uniqueRows(arr3) // {'a': 1}, {'b': 1}
+// // testing zone
+// a = {'a': 1}
+// b = {'b': 1}
+// arr = [a, b]
+// arr2 = [b]
+// arr3 = [a, a, b, b]
+// objEqual(a, arr[0]) // true
+// objEqual(a, arr[1]) // false
+// inArray(arr, a, objEqual) // true
+// inArray(arr2, a, objEqual) // false
+// uniqueRows(arr3) // {'a': 1}, {'b': 1}
+// kScore(arr3) // 2
+
+export { kScore }
