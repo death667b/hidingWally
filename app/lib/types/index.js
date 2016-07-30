@@ -11,7 +11,7 @@ fs
   .forEach(function(file) {
     const typeName = file.substring(0, file.length - 3);
     const Type = require(path.join(__dirname, file));
-    types[typeName] = new Type.default();
+    types[typeName] = Type.default;
   });
 
-console.log(types);
+export { types };
