@@ -2,7 +2,7 @@
 import csv from 'fast-csv';
 
 import { File } from '../file';
-import { Dictionary } from '../type_dictionary';
+import { Dictionary } from '../Dictionary';
 
 import { types } from '../types';
 
