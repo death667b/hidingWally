@@ -9,9 +9,9 @@
 - Ship (The one the arrived in Australia on)
 - Date (Date of Arrival)
 - Page (What page this record was on)
-- QSA Item Number --|
-- Microfilm 1       | - probably not useful
-- Microfilm 2     --| 
+- QSA Item Number` --|`
+- Microfilm 1`       | - probably not useful`
+- Microfilm 2`     --|`
 
 ### Toowoomba prison records 1864 to 1906
 
@@ -30,10 +30,10 @@
 - Given Name
 - Ship
 - Date of Arrival
-- Page     ---|
-- QSA Ref  ---|
-- Item ID  ---| -- probably not useful
-- M/film   ---|
+- Page`     ---|`
+- QSA Ref`  ---|`
+- Item ID`  ---| -- probably not useful`
+- M/film`   ---|`
 
 ### State Library of Queensland - British convict transportation registers
 
