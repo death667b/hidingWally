@@ -1,16 +1,17 @@
 # type system
 
-for part of the system to identify what procceses are applicable to the data we will need to define a type system. So far the proposition is a heirachial system.
+for part of the system to identify what procceses are applicable to the data we will need to define a type system.
 
 ## types
 
-Number
+### specific types
 	Id
 	Age
-	
-String
 	Date
 	Address
 	FirstName
 	LastName
-	
+
+### gerneric types
+	String
+	Number
