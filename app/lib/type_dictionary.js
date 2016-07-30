@@ -35,7 +35,7 @@ export class Dictionary {
 
     // cycle through dictionary keys. test for match. push matches.
     type_dictionary.keys().forEach(key => {
-      if (columnKey.indexOf(type_dictionary[key]) !== -1) {
+      if (columnKey.match(type_dictionary[key])) {
         matches.push(key);
       }
     });
