@@ -38,10 +38,20 @@ export class Root extends Component {
 
   render() {
     return (
-      <div className="root">
-        {this.getToast()}
-        <Uploader showToast={this.showToast}/>
+      <div className="root row">
+        <div className="col-xl-3">
+          <img src="/favi/android-icon-192x192.png" />
+        </div>
+        <div className="col-xl-9">
+          {this.getToast()}
+          <Uploader showToast={this.showToast}/>
+        </div>
       </div>
+      <footer class="footer" />
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>
     )
   }
 }
