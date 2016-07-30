@@ -48,11 +48,10 @@ export class Root extends Component {
             <Uploader showToast={this.showToast}/>
           </div>
         </div>
-        <footer class="footer" />
-        <div class="container">
-          <p class="text-muted">Place sticky footer content here.</p>
-        </div>
-
+        <footer class="footer">
+          <div class="container">
+            <p class="text-muted">Place sticky footer content here.</p>
+          </div>
         </footer>
       </div>
     )
