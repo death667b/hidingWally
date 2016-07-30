@@ -10,6 +10,10 @@ export default class ParseDate extends Base {
 		};
 	}
 
+	static getColumnRegex() {
+		return new RegExp('date|year|time', 'i');
+	}
+
 	static closest10(date) {
 		return ParseDate.filterDate(date);
 	}

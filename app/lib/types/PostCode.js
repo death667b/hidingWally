@@ -7,6 +7,10 @@ export default class PostCode extends Base {
     return postCodeTest.test(value);
   }
 
+  static getColumnRegex() {
+    return new RegExp('post.*code', 'i');
+  }
+
   static filters() {
     return {
       'Generalise Post Code': PostCode.generalisePostCode,
