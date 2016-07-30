@@ -4,9 +4,9 @@ export class ParseAge extends Base {
 
 	static filter(){
 		return {
-			'Round To Closest 5': ParseDate.closest5,
-			'Round To Closest 10': ParseDate.closest10,
-			'Round To Closest 20': ParseDate.closest20,
+			'Round To Closest 5': ParseAge.closest5,
+			'Round To Closest 10': ParseAge.closest10,
+			'Round To Closest 20': ParseAge.closest20,
 		};
 	}
 	/**
@@ -15,23 +15,21 @@ export class ParseAge extends Base {
 	 *	@return {Boolean} True if valid date
 	 */
 	static isValid(age){
-		if (Date.parse(date)) {
-			return true;
-		} else {
+		if (typeof age !== 'number' && age < 1) {
 			return false;
 		}
 	}
 
 	static closest10(date) {
-		return ParseDate.filterDate(2, date);
+		return ParseAge.filterDate(2, date);
 	}
 
 	static closest5(date) {
-		return ParseDate.filterDate(3, date, 5);
+		return ParseAge.filterDate(3, date, 5);
 	}
 
 	static closest20(date) {
-		return ParseDate.filterDate(3, date, 20);
+		return ParseAge.filterDate(3, date, 20);
 	}
 
 	/**
@@ -61,14 +59,14 @@ export class ParseAge extends Base {
 
 		if (option == 1){
 			input3 = (typeof input3 === 'undefined') ? "*" : input3;
-			return ParseDate.suppressDate(input3);
+			return ParseAge.suppressDate(input3);
 		}
 
 		if (typeof dob != 'string'){
 			return false;
 		}
 
-		if (!ParseDate.isValid(dob)){
+		if (!ParseAge.isValid(dob)){
 			return false;
 		}
 
@@ -89,7 +87,7 @@ export class ParseAge extends Base {
 		monthRange = (monthRange < 0) ? 0 : monthRange;
 
 		if (monthRange > 0) {
-			var month = ParseDate.getMonth(dob);
+			var month = ParseAge.getMonth(dob);
 			var minMonth = month - (month % monthRange);
 			minMonth = (minMonth < 1) ? 1 : minMonth;
 			var maxMonth = minMonth + (monthRange-1);
@@ -99,7 +97,7 @@ export class ParseAge extends Base {
 			var maxMonth = "";
 		}
 
-		var year = ParseDate.getYear(dob);
+		var year = ParseAge.getYear(dob);
 		var minYear = year - (year % yearRange);
 		var maxYear = minYear + (yearRange-1);
 
