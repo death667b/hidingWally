@@ -10,9 +10,10 @@ export class Root extends Component {
       toast: null,
     };
     this.showToast = this.showToast.bind(this);
+    this.clearToast = this.clearToast.bind(this);
   }
 
-  showToast(type, message){
+  showToast(type, message) {
     this.setState({
       toast: {
         type,
@@ -21,11 +22,18 @@ export class Root extends Component {
     });
   }
 
+  clearToast() {
+    this.setState({
+      toast: null,
+    })
+  }
+
   getToast(){
     if (this.state.toast){
       const toast = this.state.toast;
-      this.setState({ toast: null });
-      return <Toast type={toast.type} message={toast.message} />
+      // this.setState({ toast: null });
+      setTimeout(() => this.clearToast(), 3000);
+      return <Toast clear={this.clearToast} type={toast.type} message={toast.message} />
     }
   }
 
@@ -33,7 +41,7 @@ export class Root extends Component {
     return (
       <div className="root">
         {this.getToast()}
-        <Uploader showToast={e => this.showToast()}/>
+        <Uploader showToast={this.showToast}/>
       </div>
     )
   }
