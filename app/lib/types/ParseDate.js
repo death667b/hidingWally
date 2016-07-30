@@ -40,20 +40,15 @@ export default class ParseDate extends Base {
 	}
 
 	/**
-	 * Filters a DOB based on several options
-	 *
-	 *   Option 1: Filter Date with default year filter (10 Years)
-	 *     Format:  parseDate.filterDate(2, DOB)
-	 *   Option 2: Filter Date with set year range (example 5 years)
-	 *     Format:  parseDate.filterDate(3, DOB, 5)
+	 * Filters a DOB to a 10 year range unless adjusted by the 
+	 * optional yearRange value
 	 *   
-	 * Will return false on any invalid options or values
+	 * Will return false on any invalid values
 	 * 
-	 * @param {Numner} option Option selected
-	 * @param {String} dob Valid DOB
-	 * @param {String} input3 (Option 1) Character suppress (Option 2 or higher) Year range
-	 * @param {Number} monthRange If no month givern, defaults to 0
-	 * @return {String} Filtered DOB as string ir False on error
+	 * @param {String} dob Unvalidated string for a DOB
+	 * @param {Number} yearRange Sets the range to filter, default 10 if
+	 *                 no value is givern
+	 * @return {String} Filtered DOB as string or 'false' on error
 	 */
 	static filterDate(dob, yearRange){
 		if (typeof dob != 'string'){
