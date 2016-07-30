@@ -22,6 +22,5 @@ export class CSV {
             [header]: Dictionary.getColumnType(header),
           }));
         })
-        .catch(error => { throw error; });
   }
 }
