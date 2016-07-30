@@ -1,3 +1,3 @@
 import ParseEmail from './lib/types/ParseEmail'; 
 
-console.log(ParseEmail.filterEmail("name@domain.com"));
+console.log(ParseEmail.filterEmail("name@domain.com", 1));
