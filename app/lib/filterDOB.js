@@ -1,4 +1,4 @@
-class filterDate {
+class parseDate {
 	/**
 	 * Test if supplied string is in a valid date format
 	 *	@param {String} date to test
@@ -13,13 +13,22 @@ class filterDate {
 	}
 
 	/**
+	 * Return the supplied character
+	 * @param {String} Character to replace the date with
+	 * @return {String} Character to return
+	 */
+	static suppressDate(char){
+		return char;
+	}
+
+	/**
 	 * Filters a DOB based on a year range and optionally month range
 	 * @param {String} dob
 	 * @param {Number} yearRange
 	 * @param {Number} monthRange - If no month givern, defaults to 1
 	 * @return {String} Filtered DOB
 	 */
-	static DOB(dob, yearRange, monthRange){
+	static filterDate(dob, yearRange, monthRange){
 		yearRange = (yearRange < 0) ? 1 : yearRange;
 
 		monthRange = (typeof monthRange === 'undefined') ? 0 : monthRange;
