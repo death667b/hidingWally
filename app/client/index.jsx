@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Uploader } from './components/Uploader';
+import { Root } from './components/Root';
 
 const mountNode = document.getElementById('app');
 
-ReactDOM.render(<Uploader />, mountNode);
+ReactDOM.render(<Root />, mountNode);

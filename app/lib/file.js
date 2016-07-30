@@ -12,7 +12,7 @@ export class File {
    * @param  {String} pathname - path to the file.
    * @return {String} the line of the file.
    */
-  static readLine(pathname) {
+  static readFirst(pathname) {
     return new Promise(resolve => {
       const stream = fs.createReadStream(pathname, { encoding: 'utf8' });
       let [line, position] = ['', 0];
@@ -29,6 +29,26 @@ export class File {
         .on('close', () => resolve(line.slice(0, position - 1)))
         .on('error', error => { throw error; });
     });
+  }
+
+
+  static readFile(pathname) {
+     return new Promise(resolve => {
+      const stream = fs.createReadStream(pathname, { encoding: 'utf8' });
+      let [line, position] = ['', 0];
+
+      stream
+        .on('data', () => {
+          let line = ''
+          do {
+            char = stream.read(1);
+            line += char;
+          } while (char !== '\n');
+          stream.close();
+        })
+        .on('close', () => resolve(line.slice(0, position - 1)))
+        .on('error', error => { throw error; });
+    });   
   }
 
   /**
