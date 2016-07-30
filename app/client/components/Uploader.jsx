@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 
 export class Uploader extends Component {
 
-  constructor(props) {
-    super(props);
-    console.log(this.props);
-  }
-
   doUpload(event) {
     event.preventDefault();
     // gonna have to do 'new FormData()'

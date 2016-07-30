@@ -1,5 +1,10 @@
 import express from 'express';
 import multer from 'multer';
+import path from 'path';
+
+import { CSV } from './lib/csv';
+import { types } from './lib/types';
+
 import chokidar from 'chokidar';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -8,6 +13,14 @@ import config from './webpack.config';
 const compiler = webpack(config);
 
 const app = express();
+
+/**
+ * Storage Manager for multer uploads
+ * @param  {Object} options - an options object
+ * @param  {Function} options.destination - returns the file destination
+ * @param  {Function} options.filename - returns the file name
+ * @return {Storage} a multer storage engine
+ */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -16,11 +29,11 @@ const storage = multer.diskStorage({
     cb(null, `${file.fieldname}-${Date.now()}`);
   },
 });
+const upload = multer({ storage });
 
 app.set('views', './client');
 app.set('view engine', 'pug');
 
-const upload = multer({ storage });
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
@@ -33,11 +46,26 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', upload.single('file'), (req, res) => {
-  console.log(req.file);
+
   if (!req.file) return res.status(400).send('Invalid File');
   const filePath = req.file.path;
-  console.log(filePath);
-  res.send(filePath);
+
+  CSV.getColumnKeys(filePath)
+    .then(columns => {
+      columns.forEach(column => { /* eslint no-param-reassign: 0 */
+        column.filters = types.getFilterKeys(column.type);
+      });
+
+      return res.send(/* TODO: send the UI with operations */);
+    });
+});
+
+app.post('/transform', (req, res) => {
+  const transaction = JSON.parse(req.body);
+  const pathname = path.join(__dirname, 'upload', transaction.pathname);
+  const transformers = CSV.createTransformer(transaction.selectors, types);
+  const newPath = CSV.tranformCSV(pathname, transformers);
+  return req.sendFile(path.join(__dirname, 'upload', newPath));
 });
 
 
@@ -68,5 +96,3 @@ compiler.plugin('done', function() {
 app.listen(3000, () => {
   console.info('Listening on http://localhost:3000');
 });
-
-
