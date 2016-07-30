@@ -4,13 +4,13 @@ bottom up strategy (work with a single dataset first)
 
 ## feature ideas
 
-### anonomise columns
+### anonymise columns
 
 ### type columns
 
 ### offer valid mutations
 
-### offer default collumn where they must select a type
+### offer default column where they must select a type
 
 ## could have feature ideas
 
