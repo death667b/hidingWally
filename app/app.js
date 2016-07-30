@@ -1,7 +1,18 @@
 import 'babel-polyfill';
 import express from 'express';
-import path from 'path';
+import multer from 'multer';
+
 const app = express();
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '/uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${file.fieldname}-${Date.now()}`);
+  },
+});
+
+const upload = multer({ storage });
 
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -9,7 +20,16 @@ app.set('view engine', 'pug');
 app.use('/components', express.static('bower_components'));
 
 app.get('/', (req, res) => {
-  res.render('index', {name: 'david', test: function(){return 'x'}});
+  res.render('index', {
+    title: 'DAAASGUD',
+    name: 'david',
+    test: () => 'x',
+  });
+});
+
+app.post('/upload', upload.single('file'), (req, res) => {
+  const filePath = req.file.path;
+  res.send(`file path is ${filePath}.`);
 });
 
 app.listen(3000, () => {
