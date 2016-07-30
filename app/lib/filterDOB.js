@@ -1,5 +1,4 @@
-//export class ParseDate extends Base{
-class ParseDate {
+export class ParseDate extends Base{
 	static filter(){
 		return {
 			'Round To Closest 5': ParseDate.closest5,
