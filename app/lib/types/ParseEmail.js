@@ -3,37 +3,33 @@ import { Base } from './Base';
 export default class ParseEmail extends Base {
 	static filter(){
 		return {
-			'Round To Closest 5': ParseDate.closest5,
-			'Round To Closest 10': ParseDate.closest10,
-			'Round To Closest 20': ParseDate.closest20,
+			'Round To Closest 5': ParseEmail.closest5,
+			'Round To Closest 10': ParseEmail.closest10,
+			'Round To Closest 20': ParseEmail.closest20,
 		};
 	}
 
-	static closest10(date) {
-		return ParseDate.filterDate(date);
+	static closest10(email) {
+		return ParseEmail.filterDate(email);
 	}
 
-	static closest5(date) {
-		return ParseDate.filterDate(date, 5);
+	static closest5(email) {
+		return ParseEmail.filterDate(email, 5);
 	}
 
-	static closest20(date) {
-		return ParseDate.filterDate(date, 20);
+	static closest20(email) {
+		return ParseEmail.filterDate(email, 20);
 	}
 
 	/**
-	 * Test if supplied string is in a valid date format
-	 * Date can not be in the format dd mm yy
-	 * It can be dd MMM yy
+	 * Test for valid email.  Returns true if the string contains at least
+	 * a@a.aa
 	 *
-	 *	@param {String} date to test
-	 *	@return {Boolean} True if valid date
+	 * @param {String} email to be tested
+	 * @return {Boolean} returns 'true' if passes
 	 */
-	static isValid(date){
-		if (Date.parse(date)) {
-			return true;
-		} else {
-			return false;
-		}
+	static isValid(email){
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
 	}
 }

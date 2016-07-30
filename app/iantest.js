@@ -1,3 +1,3 @@
-import ParseDate from './lib/types/ParseDate'; 
+import ParseEmail from './lib/types/ParseEmail'; 
 
-console.log(ParseDate.filter()['Round To Closest 5']('20 Mar 80'));
+console.log(ParseEmail.isValid("a@a.aa"));
