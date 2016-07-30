@@ -22,13 +22,30 @@ class parseDate {
 	}
 
 	/**
-	 * Filters a DOB based on a year range and optionally month range
-	 * @param {String} dob
-	 * @param {Number} yearRange
-	 * @param {Number} monthRange - If no month givern, defaults to 1
+	 * Filters a DOB based on several options
+	 *
+	 *   Option 1: Suppress Date
+	 *     Format:  parseDate.filterDate(1, DOB, Charcter to Replace)
+	 *   Option 2: Filter Date with default year filter (10 Years)
+	 *     Format:  parseDAte.filterDate(2, DOB)
+	 *   Option 3: Filter Date with set year range (example 5 years)
+	 *     Format:  parseDate.filterDate(3, DOB, 5)
+	 *   Option 4: Filter Date with year and month ranges (example 5 years and months)
+	 *     Format:  parseDate.filterDate(4, DOB, 5, 5)
+	 * 
+	 * @param {Numner} option Option selected
+	 * @param {String} dob Valid DOB
+	 * @param {String} option3 (Option 1) Character suppress (Option 2 or higher) Year range
+	 * @param {Number} monthRange If no month givern, defaults to 0
 	 * @return {String} Filtered DOB
 	 */
-	static filterDate(dob, yearRange, monthRange){
+	static filterDate(option, dob, option3, monthRange){
+		if (option == 1){
+			return suppressDate(option3);
+		} else {
+			var yearRange = option3;
+		}
+
 		yearRange = (yearRange < 0) ? 1 : yearRange;
 
 		monthRange = (typeof monthRange === 'undefined') ? 0 : monthRange;
@@ -50,7 +67,7 @@ class parseDate {
 		var minYear = year - (year % yearRange);
 		var maxYear = minYear + (yearRange-1);
 
-
+		
 
 
 
@@ -85,6 +102,6 @@ class parseDate {
 
 //var yearTRange = 5;
 //var monthTRange = 5;
-console.log(filterDate.getYear("25 dec 1980"));
+//console.log(filterDate.getYear("25 dec 1980"));
 
 //console.log(filterDOB(dob1, yearTRange, 5));
