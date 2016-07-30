@@ -1,29 +1,22 @@
-var _ = require('lodash')
-// import _ from 'lodash'
+const _ = require('lodash')
 
-
+  /**
+   * returns the minimum unique count of objects in the passed array.
+   * A high kScore means individual records can not be uniquely identified
+   * easily. K-anonymity is robust against database linkage attacks.
+   * @param  {Array} `records`, an array of objects.
+   * @return {Integer} the minimum occurences of unique objects in `records`.
+   */
 function kScore(records){
     // find array of distinct rows
         // for each distinct row in array
             // find the min number of occurences
                 // assign this to kMin
                     // break if this ever equals 1 and return 1 (minimum score)
-
     return _.chain(records).countBy(obj => JSON.stringify(obj)).values().min().value()
 }
 
-// function uniqueRows(array){
-//     //Return an array of unique arrays within an array of arrays
-//     var uniqueValuesArray = new Array()
-//     for (var i = 0; i < array.length; i++){
-//         var hash = array[i]
-//         console.log(containsObject(hash,uniqueValuesArray))
-//         if (!containsObject(hash,uniqueValuesArray)){
-//             uniqueValuesArray[uniqueValuesArray.length + 1] = hash
-//         }
-//     }
-//     return uniqueValuesArray
-// }
+// Functions below are deprecated :'(
 
 function uniqueRows(array) {
     const setAdd = (arr, obj) => {
@@ -74,13 +67,6 @@ function objEqual(a, b) {
     return true
 } 
 
-// var records = [
-// {"x": 1, "y": 2, "z": 3},
-// {"x": 1, "y": 2, "z": 3},
-// {"x": 4, "y": 5, "z": 6},
-// {"x": 5, "z": 8}
-// ]
-
 function containsObject(obj, list){
     for (i = 0; i < list.length + 1; i++){
         var ind = list.indexOf(obj)
@@ -93,14 +79,13 @@ function containsObject(obj, list){
     }
 }
 
-// var array = uniqueRows(records)
-// console.log (containsObject(records[0], records))
-// console.table(records)
-// console.table(array)
-
-
-
 // // testing zone
+// var records = [
+// {"x": 1, "y": 2, "z": 3},
+// {"x": 1, "y": 2, "z": 3},
+// {"x": 4, "y": 5, "z": 6},
+// {"x": 5, "z": 8}
+// ]
 // a = {'a': 1}
 // b = {'b': 1}
 // arr = [a, b]
