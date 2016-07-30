@@ -9,7 +9,11 @@ app.set('view engine', 'pug');
 app.use('/components', express.static('bower_components'));
 
 app.get('/', (req, res) => {
-  res.render('index', {name: 'david', test: function(){return 'x'}});
+  res.render('index', {
+    title: 'DAAASGUD',
+    name: 'david',
+    test: function(){return 'x'},
+  });
 });
 
 app.listen(3000, () => {

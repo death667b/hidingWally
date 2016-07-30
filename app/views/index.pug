@@ -2,21 +2,30 @@ doctype html
 html(lang="en")
     head
         title DAAASGUD
-        link(type="text/css" href="/components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.css")
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
     body
-        h1 Jade - node template engine
-        h2=name
-        h3=test()
-        #container.col
-            if youAreUsingJade
-                p You are amazing
-            else
-                p Get on it!
-            p.
-                Jade is a terse and simple
-                templating language with a
-                strong focus on performance
-                and powerful features.doctype html
+        nav.navbar.navbar-light.bg-faded
+            a.navbar-brand(href='#')=title
+            ul.nav.navbar-nav
+                li.nav-item.active
+                    a.nav-link(href='#')
+                        | Home
+                        span.sr-only (current)
+                li.nav-item
+                    a.nav-link(href='#') Features
+                li.nav-item
+                    a.nav-link(href='#') Pricing
+                li.nav-item
+                    a.nav-link(href='#') About
+
+        .container
+            .row
+                .col-xs Test
+                .col-xs Test
+                .col-xs Test
+                .col-xs Test
+                .col-xs Test
 
         script(type="application/javascript" src="/components/jquery/dist/jquery.js")
         script(type="application/javascript" src="/components/tether/dist/js/tether.js")
