@@ -23,8 +23,8 @@ export default class ParseAge extends Base {
    * @returns {string}
    */
   static generaliseAge(age, range) {
-    const minAgeBucket = parseInt((age / 10), 10) * 10;
-    const maxAgeBucket = minAgeBucket + range;
+    const minAgeBucket = (parseInt((age / range), 10) * range);
+    const maxAgeBucket = minAgeBucket + (range - 1);
 
     return `${minAgeBucket}-${maxAgeBucket}`;
   }
