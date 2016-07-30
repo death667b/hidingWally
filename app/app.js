@@ -3,9 +3,6 @@ import express from 'express';
 import multer from 'multer';
 import pug from 'pug';
 
-import { ParseDate } from './lib/filterDOB';
-import { ParseAge } from './lib/filterAge.js';
-
 const app = express();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -39,14 +36,6 @@ app.post('/upload', upload.single('file'), (req, res) => {
     'Test': ['Test', 'Date']
   }});
   res.send(headers);
-});
-
-app.get('/devtest', (req, res) => {
-  res.send(ParseAge.filters()['Generalise Age'](42, 10));
-});
-
-app.get('/ian', (req, res) => {
-  res.send(ParseDate.isValid('20 Mar 80'));
 });
 
 app.listen(3000, () => {

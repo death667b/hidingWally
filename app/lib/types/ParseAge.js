@@ -1,6 +1,6 @@
 import { Base } from './Base.js';
 
-export class ParseAge extends Base {
+export default class ParseAge extends Base {
 
   static isValid(value) {
     return !!(typeof value === 'number' && value >= 0);
