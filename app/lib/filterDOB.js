@@ -1,10 +1,18 @@
-class parseDate {
+//export class ParseDate extends Base{
+class ParseDate {
+	static filter(){
+		return {
+			'Round To Closest 5': ParseDate.closest5,
+			'Round To Closest 10': ParseDate.closest10,
+			'Round To Closest 20': ParseDate.closest20,
+		};
+	}
 	/**
 	 * Test if supplied string is in a valid date format
 	 *	@param {String} date to test
 	 *	@return {Boolean} True if valid date
 	 */
-	static isDate(date){
+	static isValid(date){
 		if (Date.parse(date)) {
 			return true;
 		} else {
@@ -12,13 +20,16 @@ class parseDate {
 		}
 	}
 
-	/**
-	 * Return the supplied character
-	 * @param {String} Character to replace the date with
-	 * @return {String} Character to return
-	 */
-	static suppressDate(char){
-		return char;
+	static closest10(date) {
+		return ParseDate.filterDate(2, date);
+	}
+
+	static closest5(date) {
+		return ParseDate.filterDate(2, date, 5);
+	}
+
+	static closest20(date) {
+		return ParseDate.filterDate(2, date, 20);
 	}
 
 	/**
@@ -42,32 +53,41 @@ class parseDate {
 	 * @return {String} Filtered DOB as string ir False on error
 	 */
 	static filterDate(option, dob, input3, monthRange){
-		if (option < 1 && option > 4) {
-			return false;
-		}
-
-		if (typeof dob != 'string') {
+		if (option < 1 && option > 4){
 			return false;
 		}
 
 		if (option == 1){
-			return suppressDate(input3);
-		} else {
-			var yearRange = input3;
+			input3 = (typeof input3 === 'undefined') ? "*" : input3;
+			return ParseDate.suppressDate(input3);
 		}
 
-		if (!isDate(dob)){
+		if (typeof dob != 'string'){
 			return false;
 		}
 
+		if (!ParseDate.isValid(dob)){
+			return false;
+		}
+
+		var yearRange = (typeof input3 === 'undefined') ? 10 : input3;
 		yearRange = (yearRange < 0) ? 1 : yearRange;
 
+		if (typeof yearRange != 'number'){
+			return false;
+		}
+
 		monthRange = (typeof monthRange === 'undefined') ? 0 : monthRange;
+		if (typeof monthRange != 'number'){
+			return false;
+		}
+
+
 		monthRange = (monthRange > 12) ? 12 : monthRange;
 		monthRange = (monthRange < 0) ? 0 : monthRange;
 
 		if (monthRange > 0) {
-			var month = getMonth(dob);
+			var month = ParseDate.getMonth(dob);
 			var minMonth = month - (month % monthRange);
 			minMonth = (minMonth < 1) ? 1 : minMonth;
 			var maxMonth = minMonth + (monthRange-1);
@@ -77,18 +97,18 @@ class parseDate {
 			var maxMonth = "";
 		}
 
-		var year = getYear(dob);
+		var year = ParseDate.getYear(dob);
 		var minYear = year - (year % yearRange);
 		var maxYear = minYear + (yearRange-1);
 
 		
 		switch(option){
 			case 2:
-				return "option 2";
+				return minYear + " >= DOB Year <= " + maxYear;
 			case 3:
-				return "option 3";
+				return "Not implemented";
 			case 4:
-				return "option 4";
+				return "Not implemented";
 			default:
 				return false;
 		}
@@ -114,5 +134,3 @@ class parseDate {
 		return dob.getFullYear();
 	}
 }
-
-console.log();
