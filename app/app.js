@@ -2,8 +2,8 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 
-import { CSV } from './lib/csv';
-import { types } from './lib/types';
+import {CSV} from './lib/csv';
+import {types} from './lib/types';
 
 import chokidar from 'chokidar';
 import webpack from 'webpack';
@@ -29,11 +29,10 @@ const storage = multer.diskStorage({
     cb(null, `${file.fieldname}-${Date.now()}`);
   },
 });
-const upload = multer({ storage });
+const upload = multer({storage});
 
 app.set('views', './client');
 app.set('view engine', 'pug');
-
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
@@ -50,15 +49,14 @@ app.post('/upload', upload.single('file'), (req, res) => {
 
   if (!req.file) return res.status(400).send('Invalid File');
   const filePath = req.file.path;
-
-  CSV.getColumnKeys(filePath)
+  CSV.parseColumnKeys(filePath)
     .then(columns => {
-      columns.forEach(column => { /* eslint no-param-reassign: 0 */
-        column.filters = types.getFilterKeys(column.type);
-      });
-
-      return res.send(/* TODO: send the UI with operations */);
-    });
+      columns.forEach(column => /* eslint no-param-reassign: 0 */
+        column.filters = types.getFilterKeys(column.type)
+      );
+      return columns
+    })
+    .then(cols => res.json(cols));
 });
 
 app.post('/transform', (req, res) => {
@@ -69,17 +67,15 @@ app.post('/transform', (req, res) => {
   return req.sendFile(path.join(__dirname, 'upload', newPath));
 });
 
-
-
 // Do "hot-reloading" of express stuff on the server
 // Throw away cached modules and re-require next time
 // Ensure there's no important state in there!
 const watcher = chokidar.watch('.', {ignored: /[\/\\]\.|node_modules/});
 
-watcher.on('ready', function() {
-  watcher.on('all', function() {
+watcher.on('ready', function () {
+  watcher.on('all', function () {
     console.log("Clearing /server/ module cache from server");
-    Object.keys(require.cache).forEach(function(id) {
+    Object.keys(require.cache).forEach(function (id) {
       if (/[\/\\]server[\/\\]/.test(id)) delete require.cache[id];
     });
   });
@@ -87,9 +83,9 @@ watcher.on('ready', function() {
 
 // Do "hot-reloading" of react stuff on the server
 // Throw away the cached client modules and let them be re-required next time
-compiler.plugin('done', function() {
+compiler.plugin('done', function () {
   console.log("Clearing /client/ module cache from server");
-  Object.keys(require.cache).forEach(function(id) {
+  Object.keys(require.cache).forEach(function (id) {
     if (/[\/\\]client[\/\\]/.test(id)) delete require.cache[id];
   });
 });
