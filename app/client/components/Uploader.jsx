@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 export class Uploader extends Component {
-  constructor(){
-
-  }
 
   doUpload(){
 
