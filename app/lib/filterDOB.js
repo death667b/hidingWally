@@ -135,11 +135,6 @@ export class ParseDate extends Base {
 		var dob = new Date(dobString);
 		return dob.getFullYear();
 	}
-
-	static cleanDate(date){
-
-		return "25 feb 1980";
-	}
 }
 
 
