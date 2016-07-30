@@ -1,4 +1,4 @@
-import { Base } from '/.Base.js'
+import { Base } from './Base.js'
 
 export default class LatLong extends Base {
 
@@ -19,15 +19,15 @@ export default class LatLong extends Base {
 	to.   */
 
 	static roundHundredMetre( coord ){
-		return Math.round(coord/10**-3)*10**-3 
+		return Math.round(coord/Math.pow(10, -3))*Math.pow(10, -3)
 	}
 
 	static roundKm( coord ){
-		return Math.round(coord/10**-2)*10**-2
+		return Math.round(coord/Math.pow(10, -2))*Math.pow(10, -2)
 	}
 
 	static roundTenKm( coord ){
-		return Math.round(coord/10**-1)*10**-1
+		return Math.round(coord/Math.pow(10, -1))*Math.pow(10, -1)
 	}
 
 	static roundHundredKm( coord ){
@@ -52,6 +52,6 @@ export default class LatLong extends Base {
 		else {
 			n -= 2  // discrepancy between decimal places in kms and lat/long
 		}
-		return coord = Math.round(coord/10**n)*10**n
+		return coord = Math.round(coord/Math.pow(10, n))*Math.pow(10, n)
 	}
 }
