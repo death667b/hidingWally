@@ -18,7 +18,7 @@ const type_dictionary = {
   date: /date|year|time/i,
   address: /place|address|location|post.*code$/i,
   name: /name/i,
-}
+};
 
 /**
  * Contains all methods that use the dictionary.
@@ -31,14 +31,14 @@ export class Dictionary {
    * @return {String} the column type identified.
    */
   static getColumnType(columnKey) {
-    const matches = [];
+    const matches = []
 
     // cycle through dictionary keys. test for match. push matches.
     type_dictionary.keys().forEach(key => {
       if (columnKey.indexOf(type_dictionary[key]) !== -1) {
         matches.push(key)
       }
-    })
+    });
 
     return matches;
   }
