@@ -1,4 +1,4 @@
-class Base {
+export class Base {
 
   static filters() {
     return {
