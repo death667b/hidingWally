@@ -18,10 +18,13 @@ export class File {
       let [line, position] = ['', 0];
 
       stream
-        .on('data', character => {
-          line += character;
-          character === '\n' ?
-            stream.close() : position += character.length;
+        .on('readable', () => {
+          let line = ''
+          do {
+            char = stream.read(1);
+            line += char;
+          } while (char !== '\n');
+          stream.close();
         })
         .on('close', () => resolve(line.slice(0, position - 1)))
         .on('error', error => { throw error; });
