@@ -1,10 +1,6 @@
-import Base from './Base';
+import { Base } from './Base';
 
-export class ParseDate extends Base{
-
-	constructor() {
-		super();
-	}
+export class ParseDate extends Base {
 
 	static filter(){
 		return {
@@ -112,7 +108,7 @@ export class ParseDate extends Base{
 			case 2:
 				return minYear + " >= DOB Year <= " + maxYear;
 			case 3:
-				return "Not implemented";
+				return minYear + " >= DOB Year <= " + maxYear;
 			case 4:
 				return "Not implemented";
 			default:
