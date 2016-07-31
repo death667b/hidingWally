@@ -14,7 +14,7 @@ export const restart = () => ({
   type: 'RESTART',
 });
 
-export const addSuccessToast = (message, timeOut) => ({
+export const addSuccessToast = (message, timeOut = 3000) => ({
   type: 'ADD_TOAST',
   value: {
     type: 'alert-success', message, timeOut,
@@ -22,7 +22,7 @@ export const addSuccessToast = (message, timeOut) => ({
   },
 });
 
-export const addInfoToast = (message, timeOut) => ({
+export const addInfoToast = (message, timeOut = 3000) => ({
   type: 'ADD_TOAST',
   value: {
     type: 'alert-info', message, timeOut,
@@ -30,7 +30,7 @@ export const addInfoToast = (message, timeOut) => ({
   },
 });
 
-export const addWarningToast = (message, timeOut) => ({
+export const addWarningToast = (message, timeOut = 3000) => ({
   type: 'ADD_TOAST',
   value: {
     type: 'alert-warning', message, timeOut,
@@ -38,7 +38,7 @@ export const addWarningToast = (message, timeOut) => ({
   },
 });
 
-export const addDangerToast = (message, timeOut) => ({
+export const addDangerToast = (message, timeOut = 3000) => ({
   type: 'ADD_TOAST',
   value: {
     type: 'alert-danger', message, timeOut,
@@ -49,6 +49,11 @@ export const addDangerToast = (message, timeOut) => ({
 export const delToast = timeStamp => ({
   type: 'DEL_TOAST',
   value: timeStamp,
+});
+
+export const setTransformData = data => ({
+  type: 'SET_TRANSFORM_DATA',
+  value: data,
 });
 
 export const asyncSendFile = (file, onSuccess, onFailure) => (
@@ -62,8 +67,8 @@ export const asyncSendFile = (file, onSuccess, onFailure) => (
           return onFailure();
         }
         return res.json()
-          .then(json => {
-            console.log(json);
+          .then(data => {
+            dispatch(setTransformData(data));
             dispatch(next());
             return onSuccess();
           });

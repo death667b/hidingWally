@@ -15,6 +15,8 @@ export const reducer = (STATE = core.DEFAULT_STATE, action) => {
       return core.addToast(STATE, action.value);
     case 'DEL_TOAST':
       return core.delToast(STATE, action.value);
+    case 'SET_TRANSFORM_DATA':
+      return core.setTransformData(STATE, action.value);
     default:
       return STATE;
   }

@@ -38,7 +38,7 @@ export class RootComponent extends Component {
          */}
         {
           this.props.toasts.map(
-            (toast, index) => <Toast key={index} props={toast} />
+            (toast, index) => <Toast key={index} toast={toast} {...this.props} />
           )
         }
       </div>
@@ -55,6 +55,7 @@ RootComponent.propTypes = {
 const mapPropsToState = STATE => ({
   activities: STATE.get('activities').toJS(),
   toasts: STATE.get('toasts').toJS(),
+  transformData: STATE.get('transformData'),
 });
 
 export const Root = connect(mapPropsToState, actions)(RootComponent);

@@ -6,13 +6,13 @@ export class Uploader extends Component {
     event.preventDefault();
 
     if (event.target.files.length < 1) {
-      return this.props.addToast('alert-warning', 'No File Selected');
+      return this.props.addWarningToast('No File Selected');
     }
 
     return this.props.asyncSendFile(
       event.target.files[0],
       () => this.props.addSuccessToast('File has been uploaded!'),
-      () => this.props.addWarningToast('alert-warning', 'File has failed to upload.', 10000)
+      () => this.props.addWarningToast('File has failed to upload.', 10000)
     );
   }
 

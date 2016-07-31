@@ -17,6 +17,18 @@ export const restart = STATE => (
   STATE.set('activities', new List(['upload', 'transform', 'complete']))
 );
 
-export const addToast = STATE => {};
+export const addToast = (STATE, toast) => (
+  STATE.update('toasts', toasts => toasts.push(toast))
+);
 
-export const delToast = STATE => {};
+export const delToast = (STATE, timeStamp) => (
+  STATE.update('toasts',
+    toasts => toasts.delete(
+      toasts.findKey(toast => toast.timeStamp === timeStamp)
+    )
+  )
+);
+
+export const setTransformData = (STATE, data) => (
+  STATE.set('transformData', data)
+);
