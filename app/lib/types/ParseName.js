@@ -1,16 +1,7 @@
 import Base from './Base';
 import randName from 'node-random-name';
 
-export default class Name extends Base {
-
-  static isValid(value) {
-    const name = new PrivateName(value);
-    return name.isValid();
-  }
-
-  static getColumnRegex() {
-    return new RegExp('name', 'i');
-  }
+export default class ParseName extends Base {
 
   static filters() {
     return {
@@ -21,6 +12,15 @@ export default class Name extends Base {
       'Generate Random Name': Name.randomise,
       'Generate Random Last Name': Name.randomLastName,
     }
+  }
+
+  static getColumnRegex() {
+    return new RegExp('name', 'i');
+  }
+
+  static isValid(value) {
+    const name = new PrivateName(value);
+    return name.isValid();
   }
 
   static suppressFirst(value) {

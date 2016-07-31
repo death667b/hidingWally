@@ -1,3 +1,4 @@
-import ParseAge from '../lib/types/ParseAge'; 
+import ParseName from '../lib/types/ParseName'; 
 
-console.log(ParseAge.filters()['Round to nearest 20 years']('11'));
+//console.log(ParseName.filters()['Round to nearest 20 years']('11'));
+console.log(ParseName.isValid("ian daniel"));
