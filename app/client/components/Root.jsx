@@ -47,7 +47,7 @@ export class Root extends Component {
       <div className="root">
         <div className="row">
           <div className="col-xl-4">
-            <img src="/favi/android-icon-192x192.png" alt="Anon"/>
+            <img src="/favi/binary2.jpg" alt="Anon"/>
           </div>
           <div className="col-xl-8">
             {this.getToasts()}
