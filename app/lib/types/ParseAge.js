@@ -74,9 +74,9 @@ export default class ParseAge extends Base {
   /**
    * Generates a random age within a range from the given age
    *
-   * @param age {number} age as an integer >= 0
+   * @param age {String} age as an integer >= 0
    * @param range {number} range as a positive integer
-   * @returns {number}
+   * @returns {String}
    */
   static randomAge(age, range) {
     if (!ParseAge.isValid(age)){
@@ -92,19 +92,19 @@ export default class ParseAge extends Base {
   /**
    * Rounds age to the nearest given number
    *
-   * @param age {number} age as an integer >= 0
+   * @param age {String} age as an integer >= 0
    * @param n {number} n as a positive integer
-   * @returns {number}
+   * @returns {String}
    */
   static roundToNearestN(age, n) {
     if (!ParseAge.isValid(age)){
       return "";
     }
     
-    let result = age + n / 2;
+    let result = parseInt(age) + n / 2;
     result -= result % n;
 
-    return result;
+    return result+"";
   }
 
 }
