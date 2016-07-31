@@ -14,9 +14,6 @@ export default class Name extends Base {
     }
   }
 
-  static test(){
-    return true;
-  }
   static getColumnRegex() {
     return new RegExp('name', 'i');
   }
