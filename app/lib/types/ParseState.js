@@ -15,11 +15,11 @@ export default class ParseState extends Base {
 	}
 
 	static obscureName(state) {
-		return ParseState.obscureVessel(vessel);
+		return ParseState.obscureVessel(state);
 	}
 
 	static randomizeName(state) {
-		return ParseState.randomName(vessel);
+		return ParseState.randomName(state);
 	}
 
 	/**

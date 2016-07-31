@@ -1,5 +1,4 @@
-import ParseCreditCard from '../lib/types/ParseCreditCard'; 
+import ParseCCV from '../lib/types/ParseCCV'; 
 
-//console.log(ParseVessel.filters()['Generate Random Last Name']('daniel, ian'));
+console.log(ParseCCV.filters()["Randomize CCV/CVV number"]("123"));
 
-console.log(ParseCreditCard.filters()["Obscure entire Credit Card number"]("1234 5678 9123 2222"));
