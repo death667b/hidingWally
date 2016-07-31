@@ -1,4 +1,5 @@
 import Base from './Base';
+import randName from 'node-random-name';
 
 export default class ParseVessel extends Base {
 
@@ -50,7 +51,7 @@ export default class ParseVessel extends Base {
 			return "";
 		}
 
-		return "TODO";
+		return randName({ last: true });
 	}
 
 }
