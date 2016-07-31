@@ -3,15 +3,6 @@ import randName from 'node-random-name';
 
 export default class Name extends Base {
 
-  static isValid(value) {
-    const name = new PrivateName(value);
-    return name.isValid();
-  }
-
-  static getColumnRegex() {
-    return new RegExp('name', 'i');
-  }
-
   static filters() {
     return {
       'Suppress First Name': Name.suppressFirst,
@@ -21,6 +12,18 @@ export default class Name extends Base {
       'Generate Random Name': Name.randomise,
       'Generate Random Last Name': Name.randomLastName,
     }
+  }
+
+  static test(){
+    return true;
+  }
+  static getColumnRegex() {
+    return new RegExp('name', 'i');
+  }
+
+  static isValid(value) {
+    const name = new PrivateName(value);
+    return name.isValid();
   }
 
   static suppressFirst(value) {
