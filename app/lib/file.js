@@ -26,7 +26,6 @@ export class File {
         })
         .on('close', () => {
           const firstLine = chars.join('').split('\n')[0].trim();
-          console.log('line is', firstLine);
           resolve(firstLine);
         })
         .on('error', error => { throw error; });

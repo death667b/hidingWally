@@ -19,7 +19,6 @@ export class Dictionary {
    * @return {String} the column type identified.
    */
   static getColumnType(columnKey) {
-    console.log('columnKey', columnKey);
     const matches = [];
     // cycle through dictionary keys. test for match. push matches.
     Object.keys(types).forEach(type => {
@@ -31,8 +30,6 @@ export class Dictionary {
         });
       }
     });
-
-    console.log(matches);
 
     return matches;
   }
