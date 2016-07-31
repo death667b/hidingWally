@@ -53,8 +53,8 @@ export const delToast = timeStamp => ({
 
 export const asyncSendFile = (file, onSuccess, onFailure) => (
   dispatch => {
-    const form = new FormData()
-      .append('file', event.target.files[0]);
+    const form = new FormData();
+    form.append('file', file);
 
     fetch('/upload', { method: 'POST', body: form })
       .then(res => {

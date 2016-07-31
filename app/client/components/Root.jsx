@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../logic/actions';
 
 import { Upload } from './Upload';
+import { Transform } from './Transform';
 import { Toast } from './Toast';
 
 export class RootComponent extends Component {
@@ -10,13 +11,13 @@ export class RootComponent extends Component {
   renderActivity() {
     switch (this.props.activities[0]) {
       case 'upload':
-        return <Upload />;
-      // case 'transform':
-      //   return <Transform />;
+        return <Upload {...this.props} />;
+      case 'transform':
+        return <Transform {...this.props} />;
       // case 'complete':
       //   return <Complete />;
       default:
-        return <Upload />;
+        return <Upload {...this.props} />;
     }
   }
 
@@ -24,17 +25,17 @@ export class RootComponent extends Component {
     return (
       <div className="root">
 
-        /**
+        {/**
          * activities are shown here
-         */
+         */}
         {
-          this.props.activites.length > 0 ?
-            () => this.renderActivity() : () => this.props.restart()
+          this.props.activities.length > 0 ?
+            this.renderActivity() : this.props.restart()
         }
 
-        /**
+        {/**
          * toasts are shown here
-         */
+         */}
         {
           this.props.toasts.map(
             (toast, index) => <Toast key={index} props={toast} />
