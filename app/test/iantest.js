@@ -1,4 +1,4 @@
-import ParseState from '../lib/types/ParseState'; 
+import LatLong from '../lib/types/LatLong'; 
 
-console.log(ParseState.filters()["Randomize State"]("Queensland"));
+console.log(LatLong.filters()["Round to Nearest 100m"]("-68.17231"));
 
