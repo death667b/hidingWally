@@ -15,6 +15,10 @@ export default class ParseAge extends Base {
     }
   }
 
+  static getColumnRegex() {
+    return new RegExp('age', 'i');
+  }
+
   static generaliseAgeFiveYears(age){
     return ParseAge.generaliseAge(age, 5);
   }
