@@ -7,7 +7,7 @@ export default class LatLong extends Base {
 	}
 
 	static getColumnRegex(){
-		return new RegExp('latitude|longitude', 'i');
+		return new RegExp('latitude|longitude|geo', 'i');
 	}
 
 	static filters(){
