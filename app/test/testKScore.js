@@ -1,6 +1,11 @@
 import {File} from '../lib/file.js';
 import {kScore} from '../lib/kScore.js';
 
+/*  
+K-score validation test. We know that there is at least one unique row in the British Convicts file
+Expected output should be 1
+*/
+
 // File.readLine('../csv/britishConvictRegistersOrig.csv').then( file => {})
 
 
