@@ -23,19 +23,47 @@ export default class LatLong extends Base {
 	to.   */
 
 	static roundHundredMetre( coord ){
-		return Math.round(coord/Math.pow(10, -3))*Math.pow(10, -3)
+		let coords = coord.split(',');
+		let returnCoords = "";
+
+		for (let x in coords){
+			returnCoords += Math.round(coords[x]/Math.pow(10, -3))*Math.pow(10, -3)+", ";
+		}
+
+		return returnCoords.slice(0, -2);
 	}
 
 	static roundKm( coord ){
-		return Math.round(coord/Math.pow(10, -2))*Math.pow(10, -2)
+		let coords = coord.split(',');
+		let returnCoords = "";
+
+		for (let x in coords){
+			returnCoords += Math.round(coords[x]/Math.pow(10, -2))*Math.pow(10, -2)
+		}
+
+		return returnCoords;
 	}
 
 	static roundTenKm( coord ){
-		return Math.round(coord/Math.pow(10, -1))*Math.pow(10, -1)
+		let coords = coord.split(',');
+		let returnCoords = "";
+
+		for (let x in coords){
+			returnCoords += Math.round(coords[x]/Math.pow(10, -1))*Math.pow(10, -1)
+		}
+
+		return returnCoords;
 	}
 
 	static roundHundredKm( coord ){
-		return Math.round(coord)  //should be 10^0 which equals 1 and cancels out
+		let coords = coord.split(',');
+		let returnCoords = "";
+
+		for (let x in coords){
+			returnCoords += Math.round(coords[x])
+		}
+
+		return returnCoords;  //should be 10^0 which equals 1 and cancels out
 	}
 
 

@@ -15,7 +15,7 @@ export default class ParseName extends Base {
   }
 
   static getColumnRegex() {
-    return new RegExp('name', 'i');
+    return new RegExp('name|surname', 'i');
   }
 
   static isValid(value) {

@@ -1,12 +1,11 @@
 import Base from './Base';
-import randName from 'node-random-name';
 
 export default class ParseState extends Base {
 
 	static filters(){
 		return {
-			'Obscure Text': ParseState.obscureName,
-			'Randomize Text': ParseState.randomizeName,
+			'Obscure State': ParseState.obscureName,
+			'Randomize State': ParseState.randomizeName,
 		};
 	}
 
@@ -15,11 +14,11 @@ export default class ParseState extends Base {
 	}
 
 	static obscureName(state) {
-		return ParseState.obscureVessel(vessel);
+		return ParseState.obscureState(state);
 	}
 
 	static randomizeName(state) {
-		return ParseState.randomName(vessel);
+		return ParseState.randomName(state);
 	}
 
 	/**
@@ -38,12 +37,12 @@ export default class ParseState extends Base {
 		}
 	}
 
-	static obscureVessel(state){
+	static obscureState(state){
 		if(!ParseState.isValid(state)){
 			return "";
 		}
 
-		return "" .concat("*".repeat(state.length));
+		return "***";
 	}
 
 	static randomName(state){
@@ -51,7 +50,9 @@ export default class ParseState extends Base {
 			return "";
 		}
 
-		return randName({ last: true });
+		const States = ["QLD", "NSW", "VIC", "TAS", "SA", "WA", "NT", "ACT"];
+
+		return States[Math.floor(Math.random() * States.length)];
 	}
 
 }

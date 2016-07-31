@@ -1,5 +1,4 @@
-import ParseCreditCard from '../lib/types/ParseCreditCard'; 
+import LatLong from '../lib/types/LatLong'; 
 
-//console.log(ParseVessel.filters()['Generate Random Last Name']('daniel, ian'));
+console.log(LatLong.filters()["Round to Nearest Km"]("-68.17231, 178.40749"));
 
-console.log(ParseCreditCard.filters()["Obscure entire Credit Card number"]("1234 5678 9123 2222"));

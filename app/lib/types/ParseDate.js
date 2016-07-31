@@ -4,9 +4,9 @@ export default class ParseDate extends Base {
 
 	static filters(){
 		return {
-			'Round To Closest 5': ParseDate.closest5,
-			'Round To Closest 10': ParseDate.closest10,
-			'Round To Closest 20': ParseDate.closest20,
+			'Round To Closest 5 Years': ParseDate.closest5,
+			'Round To Closest 10 Years': ParseDate.closest10,
+			'Round To Closest 20 Years': ParseDate.closest20,
 		};
 	}
 
