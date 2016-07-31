@@ -1,4 +1,4 @@
-import ParseCCV from '../lib/types/ParseCCV'; 
+import ParseState from '../lib/types/ParseState'; 
 
-console.log(ParseCCV.filters()["Randomize CCV/CVV number"]("123"));
+console.log(ParseState.filters()["Randomize State"]("Queensland"));
 
