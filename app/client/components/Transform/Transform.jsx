@@ -3,23 +3,31 @@ import React, { PropTypes } from 'react';
 export const Transform = props => {
   const data = props.transformData;
 
+  // XXX: Print to console all transform data
+  console.log(JSON.stringify(data));
+
   return (
     <div className="upload-activity">
-      <p>{console.log(JSON.stringify(data))}</p>
       {
-        data.columns.map((column, index) => (
-          <div key={index}>
-            {
-              Object.keys(column).map(key => (
-                <div key={key}>
-                  <p>Column: {key}</p>
-                  <p>Type: {key[0].type}</p>
-                  <p>Methods: {key[0].methods}</p>
-                  <ul>
-                  </ul>
-                </div>
-              ))
-            }
+        data.columns.map((column, i) => (
+          <div key={i}>
+            <p>Column: {column.header}</p>
+            <p>Types:</p>
+            <ul>
+              {
+                column.transforms.type.map((type, j) => (
+                  <li key={j}>{type}</li>
+                ))
+              }
+            </ul>
+            <p>Methods:</p>
+            <ul>
+              {
+                column.transforms.methods.map((type, k) => (
+                  <li key={k}>{type}</li>
+                ))
+              }
+            </ul>
           </div>
         ))
       }

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../logic/actions';
 
@@ -6,45 +6,44 @@ import { Upload } from './Upload';
 import { Transform } from './Transform';
 import { Toast } from './Toast';
 
-export class RootComponent extends Component {
-
-  renderActivity() {
-    switch (this.props.activities[0]) {
+export const RootComponent = props => {
+  /**
+   * renders the current activity
+   * @return {Element} the current activity element.
+   */
+  const renderActivity = () => {
+    switch (props.activities[0]) {
       case 'upload':
-        return <Upload {...this.props} />;
+        return <Upload {...props} />;
       case 'transform':
-        return <Transform {...this.props} />;
+        return <Transform {...props} />;
       // case 'complete':
       //   return <Complete />;
       default:
-        return <Upload {...this.props} />;
+        return <Upload {...props} />;
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className="root">
+  return (
+    <div className="root">
 
-        {/**
-         * activities are shown here
-         */}
-        {
-          this.props.activities.length > 0 ?
-            this.renderActivity() : this.props.restart()
-        }
+      {/**
+       * activities are shown here
+       */
+        props.activities.length > 0 ?
+          renderActivity() : props.restart()
+      }
 
-        {/**
-         * toasts are shown here
-         */}
-        {
-          this.props.toasts.map(
-            (toast, index) => <Toast key={index} toast={toast} {...this.props} />
-          )
-        }
-      </div>
-    );
-  }
-}
+      {/**
+       * toasts are shown here
+       */
+        props.toasts.map(
+          (toast, index) => <Toast key={index} toast={toast} {...this.props} />
+        )
+      }
+    </div>
+  );
+};
 
 RootComponent.propTypes = {
   toasts: PropTypes.array,
