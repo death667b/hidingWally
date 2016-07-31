@@ -1,6 +1,6 @@
 .container {
     width: auto;
-    max-width: 680px;
+    max-width: 900px;
     padding: 0 15px;
 }
 
@@ -18,4 +18,12 @@ h1.display-3 {
 
 div {
     font-family: 'Inconsolata', sans-serif;
+}
+
+p {
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
 }

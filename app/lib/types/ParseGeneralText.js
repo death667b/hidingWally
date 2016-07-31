@@ -11,7 +11,7 @@ export default class ParseGeneralText extends Base {
 	}
 
 	static getColumnRegex() {
-		return new RegExp('vessel|street|city|suburb', 'i');
+		return new RegExp('vessel|street|city|suburb|location', 'i');
 	}
 
 	static obscureName(vessel) {
