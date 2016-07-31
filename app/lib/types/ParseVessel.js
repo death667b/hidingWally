@@ -5,7 +5,7 @@ export default class ParseVessel extends Base {
 	static filters(){
 		return {
 			'Obscure Vessel Name': ParseVessel.obscureName,
-			'Randomize Vessel Name': ParseVessel.andomizeName,
+			'Randomize Vessel Name': ParseVessel.randomizeName,
 		};
 	}
 
@@ -14,11 +14,11 @@ export default class ParseVessel extends Base {
 	}
 
 	static obscureName(vessel) {
-		return ParseDate.obscureVessel(vessel);
+		return ParseVessel.obscureVessel(vessel);
 	}
 
 	static randomizeName(vessel) {
-		return ParseDate.randomName(vessel);
+		return ParseVessel.randomName(vessel);
 	}
 
 	/**
@@ -37,8 +37,20 @@ export default class ParseVessel extends Base {
 		}
 	}
 
+	static obscureVessel(vessel){
+		if(!ParseVessel.isValid(vessel)){
+			return "";
+		}
 
+		return "" .concat("*".repeat(vessel.length));
+	}
 
+	static randomName(vessel){
+		if(!ParseVessel.isValid(vessel)){
+			return "";
+		}
 
+		return "TODO";
+	}
 
 }

@@ -48,6 +48,8 @@ export default class ParseName extends Base {
   static randomise() {
     // it'd be really, really cool to try and figure out the gender of this person and
     // generate a name that was similar
+
+    // It would, but wouldn't that require some machine learning shit?
     const name = randName();
     const nameArray = name.split(' ');
     return `${nameArray[1]}, ${nameArray[0]}`;
