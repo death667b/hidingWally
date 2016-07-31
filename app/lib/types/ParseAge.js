@@ -82,10 +82,11 @@ export default class ParseAge extends Base {
     if (!ParseAge.isValid(age)){
       return "";
     }
-    const rangeMin = age - range;
-    const rangeMax = age + range;
+    var rangeMin = parseInt(age) - parseInt(range);
+    rangeMin = (rangeMin < 0) ? 0 : rangeMin;
+    var rangeMax = rangeMin + (parseInt(range) * 2);
 
-    return Math.floor(Math.random() * (rangeMax - rangeMin) + rangeMin);
+    return Math.floor(Math.random() * (rangeMax - rangeMin) + rangeMin) + "";
   }
 
   /**
