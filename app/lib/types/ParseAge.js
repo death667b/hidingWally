@@ -61,7 +61,7 @@ export default class ParseAge extends Base {
    * @returns {string}
    */
   static generaliseAge(age, range) {
-    if (!isValid(age)){
+    if (!ParseAge.isValid(age)){
       return "";
     }
 
@@ -79,7 +79,7 @@ export default class ParseAge extends Base {
    * @returns {number}
    */
   static randomAge(age, range) {
-    if (!isValid(age)){
+    if (!ParseAge.isValid(age)){
       return "";
     }
     const rangeMin = age - range;
@@ -96,7 +96,7 @@ export default class ParseAge extends Base {
    * @returns {number}
    */
   static roundToNearestN(age, n) {
-    if (!isValid(age)){
+    if (!ParseAge.isValid(age)){
       return "";
     }
     

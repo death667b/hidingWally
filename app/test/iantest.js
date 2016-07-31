@@ -1,3 +1,3 @@
 import ParseAge from '../lib/types/ParseAge'; 
 
-console.log(ParseAge.filters()['Generalise Age by 5 years']('30a'));
+console.log(ParseAge.filters()['Random Age +- 10 Years'](30));
