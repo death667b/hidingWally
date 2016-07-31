@@ -48,13 +48,21 @@ app.get('/', (req, res) => {
 
 // Upload processes the file, and then needs to return
 /*
+/*
   {
     pathname: filePath,
     columns: [
-      // the result of CSV.parseColumnKeys
+      {
+        header: columnName,
+        transforms: [
+          {
+            type: [valid type for this column],
+            methods: [the methods allowed for this type]
+          }
+        ]
+      }
     ]
   }
-
  */
 app.post('/upload', upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).send('Invalid File');
