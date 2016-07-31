@@ -1,14 +1,14 @@
-export class Base {
+export default class Base {
 
   static filters() {
     return {
-      'Suppress': suppress,
-      'Do nothing': doNothing,
+      'Suppress': Base.suppress,
+      'Do nothing': Base.doNothing,
     };
   }
 
   static getColumnRegex() {
-    return new RegExp('*');
+    return new RegExp('.*');
   }
 
   static isValid(value) {

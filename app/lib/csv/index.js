@@ -52,12 +52,10 @@ export class CSV {
   static parseColumnKeys(pathname) {
     return File.readFirst(pathname)
       .then(line => {
-        console.log('parseColumnKeys', line);
         const headers = line.split(',');
-        console.log(headers);
-        resolve(headers.map(header => ({
+        return headers.map(header => ({
           [header]: Dictionary.getColumnType(header),
-        })));
+        }));
       })
   }
 

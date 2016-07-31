@@ -1,9 +1,13 @@
-import { Base } from './Base.js'
+import Base from './Base.js'
 
 export default class LatLong extends Base {
 
 	static isValid(value){
 		return!!(typeof value === 'number' && value >= -180 && value <= 180)
+	}
+
+	static getColumnRegex(){
+		return new RegExp('latitude|longitude', 'i');
 	}
 
 	static filters(){
