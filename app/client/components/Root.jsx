@@ -7,38 +7,39 @@ export class Root extends Component {
   constructor() {
     super();
     this.state = {
-      toast: null,
+      toasts: [],
     };
     this.showToast = this.showToast.bind(this);
     this.clearToast = this.clearToast.bind(this);
   }
 
-  showToast(type, message) {
+  showToast(type, message, timeOut) {
+    const toasts = this.state.toasts;
+    toasts.push({
+      type,
+      message,
+      timeOut,
+      timeStamp: Date.now()
+    });
     this.setState({
-      toast: {
-        type,
-        message,
-      },
+      toasts,
     });
   }
 
-  clearToast() {
+  clearToast(timeStamp) {
+    // keep toasts with a different timestamp only
+    const toasts = this.state.toasts.filter(toast => (toast.timeStamp !== timeStamp));
     this.setState({
-      toast: null,
-    })
+      toasts,
+    });
   }
 
-  getToast(){
-    if (this.state.toast){
-      const toast = this.state.toast;
-      // this.setState({ toast: null });
-      return (<Toast
-        clear={this.clearToast}
-        type={toast.type}
-        message={toast.message}
-        timeOut={2000}
-      />);
-    }
+  getToasts(){
+    const toasts = [];
+    this.state.toasts.forEach(toast => {
+      toasts.push(<Toast key={toast.timeStamp} {...toast} clearToast={this.clearToast} />);
+    });
+    return toasts;
   }
 
   render() {
@@ -49,7 +50,7 @@ export class Root extends Component {
             <img src="/favi/android-icon-192x192.png" alt="Anon"/>
           </div>
           <div className="col-xl-8">
-            {this.getToast()}
+            {this.getToasts()}
             <Uploader showToast={this.showToast}/>
           </div>
         </div>

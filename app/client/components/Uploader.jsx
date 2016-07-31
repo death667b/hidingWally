@@ -17,10 +17,14 @@ export class Uploader extends Component {
     })
       .then(res => {
         if (!res.ok) {
-          return this.props.showToast('alert-warning', 'File has failed to upload.');
+          return this.props.showToast('alert-warning', 'File has failed to upload.', 10000);
         }
-        return this.props.showToast('alert-success', 'File has been uploaded!');
-      })
+        return res.json()
+          .then(json => {
+            console.log(json);
+            return this.props.showToast('alert-success', 'File has been uploaded!');
+          });
+      });
   }
 
   render() {
