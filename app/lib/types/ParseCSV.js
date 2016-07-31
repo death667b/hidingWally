@@ -13,28 +13,40 @@ export default class ParseCreditCard extends Base {
 	}
 
 	static obscureNuber(ccv) {
-		return ParseCreditCard.exceptLastFour(ccv);
+		return ParseCreditCard.hideNumber(ccv);
 	}
 
 	static randomNumber(ccv) {
-		return ParseCreditCard.ccAll(ccv);
+		return ParseCreditCard.ranNumber(ccv);
 	}
 
 
 
 	/**
-	 * Test for valid CC.  
+	 * Test for valid ccv.  
 	 *
 	 * @param {String} cardNumber to be tested
 	 * @return {Boolean} returns 'true' if passes
 	 */
-	static isValid(cardNumber){
-	    if (typeof cardNumber === 'string'){
+	static isValid(ccv){
+	    if (typeof ccc === 'string'){
 	    	return true;
 	    } else {
 	    	return false;
 	    }
 	}
+
+	static hideNumber(ccv){
+
+		return "TODO";
+	}
+
+	static ranNumber(ccv){
+
+		return "TODO";
+	}
+
+
 
 	static exceptLastFour(cardNumber){
 		if(!ParseCreditCard.isValid(cardNumber)){
