@@ -3,8 +3,8 @@ import Base from './Base';
 export default class ParseCreditCard extends Base {
 	static filters(){
 		return {
-			'Obscure entire Credit Card number': ParseCreditCard.obscureAll,
-			'Obscure all expect the last 4 digits': ParseCreditCard.obscureAllExceptLastFour,
+			'Obscure entire CCV/CVV number': ParseCreditCard.obscureNuber,
+			'Randomize CCV/CVV number': ParseCreditCard.randomNumber,
 		};
 	}
 
@@ -12,12 +12,12 @@ export default class ParseCreditCard extends Base {
 		return new RegExp('csv|cvv|ccv', 'i');
 	}
 
-	static obscureAllExceptLastFour(cardNumber) {
-		return ParseCreditCard.exceptLastFour(cardNumber);
+	static obscureNuber(ccv) {
+		return ParseCreditCard.exceptLastFour(ccv);
 	}
 
-	static obscureAll(cardNumber) {
-		return ParseCreditCard.ccAll(cardNumber);
+	static randomNumber(ccv) {
+		return ParseCreditCard.ccAll(ccv);
 	}
 
 
