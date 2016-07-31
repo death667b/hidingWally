@@ -1,7 +1,7 @@
 import { Base } from './Base';
 import randName from 'node-random-name';
 
-export default class Name extends Base {
+export default class ParseName extends Base {
 
   static isValid(value) {
     const name = new PrivateName(value);
