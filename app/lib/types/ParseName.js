@@ -72,9 +72,20 @@ class PrivateName {
   }
 
   processRaw() {
-    this.name = this._raw.split(', ');
-    this.lastname = this.name[0];
-    this.firstname = this.name[1];
+    if (this._raw.indexOf(',') > -1) {
+      // this is a comma separated name
+      this.name = this._raw.split(', ');
+      this.lastname = this.name[0];
+      this.firstname = this.name[1];
+    } else {
+      // split on the space
+      // everything before is a first name (first chunk)
+      // everything after is a last name
+      this.name = this._raw.split(' ');
+      this.firstname = this.name[0];
+      this.lastname = this.name[1];
+    }
+
   }
 
   getName() {
