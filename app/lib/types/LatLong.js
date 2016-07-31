@@ -6,6 +6,10 @@ export default class LatLong extends Base {
 		return!!(typeof value === 'number' && value >= -180 && value <= 180)
 	}
 
+	static getColumnRegex(){
+		return new RegExp('latitude|longitude', 'i');
+	}
+
 	static filters(){
 		return {
 			'Round to Nearest 100m': LatLong.roundHundredMetre,
