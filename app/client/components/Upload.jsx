@@ -17,10 +17,10 @@ export const Upload = props => (
         </div>
       </div>
       <div className="row">
-          <div className="col-xl-5">
+          <div className="col-md-5">
             <img src="/favi/binary2.jpg" alt="Obscured Binary" />
           </div>
-          <div className="col-xl-7">
+          <div className="col-md-7">
             <Uploader {...props} />
           </div>
       </div>
