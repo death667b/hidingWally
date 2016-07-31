@@ -19,15 +19,15 @@ export class Dictionary {
    * @return {String} the column type identified.
    */
   static getColumnType(columnKey) {
-    const matches = [];
+    const matches = {
+      type: [],
+      methods: []
+    };
     // cycle through dictionary keys. test for match. push matches.
     Object.keys(types).forEach(type => {
       if (types[type].getColumnRegex().test(columnKey)) {
-        const methods = Dictionary.getFilterKeys(type);
-        matches.push({
-          type,
-          methods,
-        });
+        matches.type.push(type)
+        matches.methods.push(...Dictionary.getFilterKeys(type));
       }
     });
 
