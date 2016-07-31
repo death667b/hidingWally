@@ -9,7 +9,7 @@ export default class ParseCreditCard extends Base {
 	}
 
 	static getColumnRegex() {
-		return new RegExp('csv|cvv', 'i');
+		return new RegExp('csv|cvv|ccv', 'i');
 	}
 
 	static obscureAllExceptLastFour(cardNumber) {
