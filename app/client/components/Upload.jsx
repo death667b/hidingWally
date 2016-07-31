@@ -15,11 +15,13 @@ export const Upload = props => (
         </div>
       </div>
     </div>
-    <div className="col-xl-4">
-      <img src="/favi/binary2.jpg" alt="Anon" />
-    </div>
-    <div className="col-xl-8">
-      <Uploader {...props} />
+    <div className="row">
+        <div className="col-xl-5">
+          <img src="/favi/binary2.jpg" alt="Anon" />
+        </div>
+        <div className="col-xl-7">
+          <Uploader {...props} />
+        </div>
     </div>
   </div>
 );
