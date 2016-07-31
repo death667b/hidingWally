@@ -54,7 +54,8 @@ export class CSV {
       .then(line => {
         const headers = line.split(',');
         return headers.map(header => ({
-          [header]: Dictionary.getColumnType(header),
+            header,
+            transforms: Dictionary.getColumnType(header)
         }));
       })
   }
