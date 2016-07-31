@@ -3,8 +3,8 @@ import Base from './Base';
 export default class ParseCreditCard extends Base {
 	static filters(){
 		return {
-			'Obscure all expect the last 4 digits': ParseCreditCard.obscureAllExceptLastFour,
 			'Obscure entire Credit Card number': ParseCreditCard.obscureAll,
+			'Obscure all expect the last 4 digits': ParseCreditCard.obscureAllExceptLastFour,
 		};
 	}
 
@@ -41,14 +41,14 @@ export default class ParseCreditCard extends Base {
 			return false;
 		}
 
-		return "TODO";
+		return "**** **** **** " + cardNumber.substring(cardNumber.length-4, cardNumber.lenth);
 	}
 	
 	static ccAll(cardNumber){
 		if(!ParseCreditCard.isValid(cardNumber)){
 			return false;
 		}
-		
-		return "TODO";
+
+		return "**** **** **** ****";
 	}
 }
