@@ -1,5 +1,5 @@
-import ParseVessel from '../lib/types/ParseVessel'; 
+import ParseCreditCard from '../lib/types/ParseCreditCard'; 
 
 //console.log(ParseVessel.filters()['Generate Random Last Name']('daniel, ian'));
 
-console.log(ParseVessel.filters()["Randomize Vessel Name"]("aasss"));
+console.log(ParseCreditCard.filters()["Obscure entire Credit Card number"]("1234 5678 9123 2222"));
