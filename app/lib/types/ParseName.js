@@ -8,7 +8,7 @@ export default class ParseName extends Base {
       'Suppress First Name': ParseName.suppressFirst,
       'Suppress Last Name': ParseName.suppressLast,
       'Initialise First Name': ParseName.trimFirst,
-      'Initialise': ParseName.initials,
+      'Initialise Full Name': ParseName.initials,
       'Generate Random Name': ParseName.randomise,
       'Generate Random Last Name': ParseName.randomLastName,
     }
