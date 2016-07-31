@@ -2,20 +2,54 @@ import { Base } from './Base.js';
 
 export default class ParseAge extends Base {
 
-  static isValid(value) {
-    return !!(typeof value === 'number' && value >= 0);
-  }
-
-  static getColumnRegex() {
-    return new RegExp('age', 'i');
-  }
-
   static filters() {
     return {
-      'Generalise Age': ParseAge.generaliseAge,
-      'Random Age': ParseAge.randomAge,
-      'Round to nearest number': ParseAge.roundToNearestN,
-    };
+      'Generalise Age by 5 years': ParseAge.generaliseAgeFiveYears,
+      'Generalise Age by 10 years': ParseAge.generaliseAgeTenYears,
+      'Random Age +- 5 Years': ParseAge.randomizeAgeFiveYears,
+      'Random Age +- 10 Years': ParseAge.randomizeAgeTenYears,
+      'Random Age +- 20 Years': ParseAge.randomizeAgeTwentyYears,
+      'Round to nearest 5 years': ParseAge.roundAgeToNearestFive,
+      'Round to nearest 10 years': ParseAge.roundAgeToNearestTen,
+      'Round to nearest 20 years': ParseAge.roundAgeToNearestTwenty,
+    }
+  }
+
+  static generaliseAgeFiveYears(age){
+    return ParseAge.generaliseAge(age, 5);
+  }
+
+  static generaliseAgeTenYears(age){
+    return ParseAge.generaliseAge(age, 10);
+  }
+
+  static randomizeAgeFiveYears(age){
+    return ParseAge.randomAge(age, 5);
+  }
+
+  static randomizeAgeTenYears(age){
+    return ParseAge.randomAge(age, 10);
+  }
+
+  static randomizeAgeTwentyYears(age){
+    return ParseAge.randomAge(age, 20);
+  }
+
+  static roundAgeToNearestFive(age){
+    return ParseAge.roundToNearestN(age, 5);
+  }
+
+  static roundAgeToNearestTen(age){
+    return ParseAge.roundToNearestN(age, 10);
+  }
+
+  static roundAgeToNearestTwenty(age){
+    return ParseAge.roundToNearestN(age, 20);
+  }
+
+  static isValid(value) {
+    const postCodeTest = /^[0-9]*$/;
+    return postCodeTest.test(value);
   }
 
   /**
@@ -27,6 +61,10 @@ export default class ParseAge extends Base {
    * @returns {string}
    */
   static generaliseAge(age, range) {
+    if (!isValid(age)){
+      return "";
+    }
+
     const minAgeBucket = (parseInt((age / range), 10) * range);
     const maxAgeBucket = minAgeBucket + (range - 1);
 
@@ -41,6 +79,9 @@ export default class ParseAge extends Base {
    * @returns {number}
    */
   static randomAge(age, range) {
+    if (!isValid(age)){
+      return "";
+    }
     const rangeMin = age - range;
     const rangeMax = age + range;
 
@@ -55,6 +96,10 @@ export default class ParseAge extends Base {
    * @returns {number}
    */
   static roundToNearestN(age, n) {
+    if (!isValid(age)){
+      return "";
+    }
+    
     let result = age + n / 2;
     result -= result % n;
 

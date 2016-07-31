@@ -2,7 +2,7 @@ import { Base } from './Base';
 
 export default class ParseDate extends Base {
 
-	static filter(){
+	static filters(){
 		return {
 			'Round To Closest 5': ParseDate.closest5,
 			'Round To Closest 10': ParseDate.closest10,
@@ -11,7 +11,7 @@ export default class ParseDate extends Base {
 	}
 
 	static getColumnRegex() {
-		return new RegExp('date|year|time', 'i');
+		return new RegExp('date.*|year|time|dob|birth', 'i');
 	}
 
 	static closest10(date) {
@@ -47,7 +47,7 @@ export default class ParseDate extends Base {
 	 * Filters a DOB to a 10 year range unless adjusted by the 
 	 * optional yearRange value
 	 *   
-	 * Will return false on any invalid values
+	 * Will return ""(Blank string) on any invalid values
 	 * 
 	 * @param {String} dob Unvalidated string for a DOB
 	 * @param {Number} yearRange Sets the range to filter, default 10 if
@@ -56,18 +56,18 @@ export default class ParseDate extends Base {
 	 */
 	static filterDate(dob, yearRange){
 		if (typeof dob != 'string'){
-			return false;
+			return "";
 		}
 
 		if (!ParseDate.isValid(dob)){
-			return false;
+			return "" ;
 		}
 
 		yearRange = (typeof yearRange === 'undefined') ? 10 : yearRange;
 		yearRange = (yearRange < 0) ? 1 : yearRange;
 
 		if (isNaN(parseInt(yearRange))){
-			return false;
+			return "";
 		}
 
 		var year = ParseDate.getYear(dob);

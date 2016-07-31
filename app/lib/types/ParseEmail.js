@@ -1,12 +1,16 @@
 import { Base } from './Base';
 
 export default class ParseEmail extends Base {
-	static filter(){
+	static filters(){
 		return {
 			'Obscure username portion of email': ParseEmail.obscureUsername,
 			'Obscure domain portion of email': ParseEmail.obscureDomain,
 			'Obscure entire email': ParseEmail.obscureEmail,
 		};
+	}
+
+	static getColumnRegex() {
+		return new RegExp('email.*', 'i');
 	}
 
 	static obscureUsername(email) {
@@ -46,19 +50,19 @@ export default class ParseEmail extends Base {
 	 */
 	static filterEmail(email, option){
 		if (typeof email !== 'string'){
-			return false;
+			return "";
 		}
 
 		if (!ParseEmail.isValid(email)){
-			return false;
+			return "";
 		}
 
 		if (typeof option !== 'number'){
-			return false;
+			return "";
 		}
 
 		if (option < 1 || option > 3){
-			return false;
+			return "";
 		}
 
 		var splitEmail = email.split('@');
@@ -74,7 +78,7 @@ export default class ParseEmail extends Base {
 				return ParseEmail.filterFullEmail(splitEmail);
 				break;
 			default:
-				return false;
+				return "";
 		}
 
 		return splitEmail;
