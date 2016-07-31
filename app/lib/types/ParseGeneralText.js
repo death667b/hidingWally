@@ -1,25 +1,25 @@
 import Base from './Base';
 import randName from 'node-random-name';
 
-export default class ParseVessel extends Base {
+export default class ParseGeneralText extends Base {
 
 	static filters(){
 		return {
-			'Obscure Vessel Name': ParseVessel.obscureName,
-			'Randomize Vessel Name': ParseVessel.randomizeName,
+			'Obscure Text': ParseGeneralText.obscureName,
+			'Randomize Text': ParseGeneralText.randomizeName,
 		};
 	}
 
 	static getColumnRegex() {
-		return new RegExp('vessel', 'i');
+		return new RegExp('vessel|street|city|suburb', 'i');
 	}
 
 	static obscureName(vessel) {
-		return ParseVessel.obscureVessel(vessel);
+		return ParseGeneralText.obscureVessel(vessel);
 	}
 
 	static randomizeName(vessel) {
-		return ParseVessel.randomName(vessel);
+		return ParseGeneralText.randomName(vessel);
 	}
 
 	/**
@@ -39,7 +39,7 @@ export default class ParseVessel extends Base {
 	}
 
 	static obscureVessel(vessel){
-		if(!ParseVessel.isValid(vessel)){
+		if(!ParseGeneralText.isValid(vessel)){
 			return "";
 		}
 
@@ -47,7 +47,7 @@ export default class ParseVessel extends Base {
 	}
 
 	static randomName(vessel){
-		if(!ParseVessel.isValid(vessel)){
+		if(!ParseGeneralText.isValid(vessel)){
 			return "";
 		}
 
