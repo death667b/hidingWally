@@ -5,12 +5,12 @@ export default class ParseName extends Base {
 
   static filters() {
     return {
-      'Suppress First Name': Name.suppressFirst,
-      'Suppress Last Name': Name.suppressLast,
-      'Initialise First Name': Name.trimFirst,
-      'Initialise': Name.initials,
-      'Generate Random Name': Name.randomise,
-      'Generate Random Last Name': Name.randomLastName,
+      'Suppress First Name': ParseName.suppressFirst,
+      'Suppress Last Name': ParseName.suppressLast,
+      'Initialise First Name': ParseName.trimFirst,
+      'Initialise': ParseName.initials,
+      'Generate Random Name': ParseName.randomise,
+      'Generate Random Last Name': ParseName.randomLastName,
     }
   }
 
@@ -90,8 +90,8 @@ class PrivateName {
 
   getName() {
     return {
-      lastname,
-      firstname,
+      lastname: this.lastname,
+      firstname: this.firstname,
     }
   }
 
