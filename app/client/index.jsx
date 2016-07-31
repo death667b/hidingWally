@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Root } from './components/Root';
 
-import { createStore, applyMiddleWare } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { thunk } from 'redux-thunk';
+import thunk from 'redux-thunk';
 
-import { reducer } from './logic';
+import { reducer } from './logic/reducer';
 
 /**
  * the redux store with redux-thunk middleware applied.
  */
-const store = createStore(reducer, applyMiddleWare(thunk));
+const store = createStore(reducer, applyMiddleware(thunk));
 
 /**
  * the react application mount point
