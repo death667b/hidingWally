@@ -4,7 +4,6 @@ import path from 'path';
 
 import {CSV} from './lib/csv';
 import {types} from './lib/types';
-import { Dictionary } from './lib/Dictionary';
 
 import chokidar from 'chokidar';
 import webpack from 'webpack';
@@ -47,11 +46,24 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+// Upload processes the file, and then needs to return
+/*
+  {
+    pathname: filePath,
+    columns: [
+      // the result of CSV.parseColumnKeys
+    ]
+  }
+
+ */
 app.post('/upload', upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).send('Invalid File');
   const filePath = req.file.path;
   CSV.parseColumnKeys(filePath)
-    .then(cols => res.json(cols))
+    .then(columns => res.json({
+      pathname: filePath,
+      columns
+    }))
     .catch(err => console.error(err));
 });
 
