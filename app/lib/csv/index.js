@@ -50,17 +50,15 @@ export class CSV {
    * @return {Promise} (Array) returns an array of objects { column: type }.
    */
   static parseColumnKeys(pathname) {
-    return new Promise(resolve => {
-      File.readLine(pathname)
-        .then(line => {
-          const headers = line.split(',');
-
-          resolve(headers.map(header => ({
-            [header]: Dictionary.getColumnType(header),
-          })));
-        })
-        .catch(error => { throw error; });
-    });
+    return File.readFirst(pathname)
+      .then(line => {
+        console.log('parseColumnKeys', line);
+        const headers = line.split(',');
+        console.log(headers);
+        resolve(headers.map(header => ({
+          [header]: Dictionary.getColumnType(header),
+        })));
+      })
   }
 
   /**

@@ -13,20 +13,22 @@ export class File {
    * @return {String} the line of the file.
    */
   static readFirst(pathname) {
+    const chars = [];
     return new Promise(resolve => {
       const stream = fs.createReadStream(pathname, { encoding: 'utf8' });
-      let [line, position] = ['', 0];
-
       stream
         .on('readable', () => {
-          let line = ''
           do {
             char = stream.read(1);
-            line += char;
+            chars.push(char);
           } while (char !== '\n');
           stream.close();
         })
-        .on('close', () => resolve(line.slice(0, position - 1)))
+        .on('close', () => {
+          const firstLine = chars.join('').split('\n')[0].trim();
+          console.log('line is', firstLine);
+          resolve(firstLine);
+        })
         .on('error', error => { throw error; });
     });
   }
