@@ -42,10 +42,14 @@
     "csvtojson": "^1.0.0",
     "express": "^4.14.0",
     "fast-csv": "^2.1.0",
+    "immutable": "^3.8.1",
     "jade": "^1.11.0",
     "lodash": "^4.14.1",
     "multer": "^1.1.0",
     "node-random-name": "^1.0.1",
-    "pug": "^2.0.0-beta4"
+    "pug": "^2.0.0-beta4",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0"
   }
 }

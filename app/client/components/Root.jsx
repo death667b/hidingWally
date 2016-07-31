@@ -1,60 +1,59 @@
-import React, {Component} from 'react';
-import { Uploader } from './Uploader';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../logic/actions';
+
+import { Upload } from './Upload';
 import { Toast } from './Toast';
 
-export class Root extends Component {
+export class RootComponent extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      toasts: [],
-    };
-    this.showToast = this.showToast.bind(this);
-    this.clearToast = this.clearToast.bind(this);
-  }
-
-  showToast(type, message, timeOut) {
-    const toasts = this.state.toasts;
-    toasts.push({
-      type,
-      message,
-      timeOut,
-      timeStamp: Date.now()
-    });
-    this.setState({
-      toasts,
-    });
-  }
-
-  clearToast(timeStamp) {
-    // keep toasts with a different timestamp only
-    const toasts = this.state.toasts.filter(toast => (toast.timeStamp !== timeStamp));
-    this.setState({
-      toasts,
-    });
-  }
-
-  getToasts(){
-    const toasts = [];
-    this.state.toasts.forEach(toast => {
-      toasts.push(<Toast key={toast.timeStamp} {...toast} clearToast={this.clearToast} />);
-    });
-    return toasts;
+  renderActivity() {
+    switch (this.props.activities[0]) {
+      case 'upload':
+        return <Upload />;
+      // case 'transform':
+      //   return <Transform />;
+      // case 'complete':
+      //   return <Complete />;
+      default:
+        return <Upload />;
+    }
   }
 
   render() {
     return (
       <div className="root">
-        <div className="row">
-          <div className="col-xl-4">
-            <img src="/favi/binary2.jpg" alt="Anon"/>
-          </div>
-          <div className="col-xl-8">
-            {this.getToasts()}
-            <Uploader showToast={this.showToast}/>
-          </div>
-        </div>
+
+        /**
+         * activities are shown here
+         */
+        {
+          this.props.activites.length > 0 ?
+            () => this.renderActivity() : () => this.props.restart()
+        }
+
+        /**
+         * toasts are shown here
+         */
+        {
+          this.props.toasts.map(
+            (toast, index) => <Toast key={index} props={toast} />
+          )
+        }
       </div>
-    )
+    );
   }
 }
+
+RootComponent.propTypes = {
+  toasts: PropTypes.array,
+  activities: PropTypes.array,
+  restart: PropTypes.func,
+};
+
+const mapPropsToState = STATE => ({
+  activities: STATE.get('activities').toJS(),
+  toasts: STATE.get('toasts').toJS(),
+});
+
+export const Root = connect(mapPropsToState, actions)(RootComponent);
