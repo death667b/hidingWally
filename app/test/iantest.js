@@ -1,4 +1,5 @@
-import ParseName from '../lib/types/ParseName'; 
+import ParseVessel from '../lib/types/ParseVessel'; 
 
-console.log(ParseName.filters()['Generate Random Last Name']('daniel, ian'));
-console.log(ParseName.filters()['Generate Random Last Name']('ian daniel'));
+//console.log(ParseVessel.filters()['Generate Random Last Name']('daniel, ian'));
+
+console.log(ParseVessel.isValid("The Good Shit"));
