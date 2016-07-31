@@ -1,4 +1,4 @@
-import { Base } from './Base';
+import Base from './Base';
 import randName from 'node-random-name';
 
 export default class Name extends Base {
