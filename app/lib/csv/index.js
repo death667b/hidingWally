@@ -3,6 +3,7 @@ import csv from 'fast-csv';
 
 import { File } from '../file';
 import { Dictionary } from '../Dictionary';
+import fs from 'fs';
 
 import { types } from '../types';
 
@@ -19,28 +20,32 @@ export class CSV {
    * @return {String} the pathname to the new file.
    */
   static transformCSV(pathname, transformer) {
-    // transforms the stream
-    const stream_transform = csv
-      .createWriteStream({ headers: true })
-      .transform(row => {
-        const new_row = {};
+    return new Promise(resolve => {
 
-        row.keys().forEach(value => {
-          new_row.push({ [value]: transformer[value]() });
-        });
-      });
+      // output stream
+      const new_file_path = `${pathname}_dus_good.csv`;
+      const stream_output = fs.createWriteStream(new_file_path, {encoding: "utf8"});
+      // create new csv
+      const stream = csv
+        .fromPath(pathname, { headers: true, objectMode: true })
+        .transform(row => {
+          const newRow = {};
+          console.log(row);
+          Object.keys(row).forEach(colName => {
+            console.log(colName);
+            newRow[colName] = transformer[colName.trim()](row[colName]);
+            console.log(newRow[colName]);
+          });
+          return newRow;
+        })
+        .pipe(csv.createWriteStream({ headers: true, objectMode: true }))
+        .pipe(stream_output);
 
-    // output stream
-    const new_file_path = `${pathname}_dus_good.csv`;
-    const stream_output = File.readStream(new_file_path);
+      stream.on('finish', () => {
+        resolve(new_file_path);
+      })
+    })
 
-    // create new csv
-    csv
-      .fromPath(pathname)
-      .pipe(stream_transform)
-      .pipe(stream_output);
-
-    return new_file_path;
   }
 
 
