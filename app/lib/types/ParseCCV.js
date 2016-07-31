@@ -9,7 +9,7 @@ export default class ParseCCV extends Base {
 	}
 
 	static getColumnRegex() {
-		return new RegExp('csv|cvv|ccv', 'i');
+		return new RegExp('cvv|ccv', 'i');
 	}
 
 	static obscureNuber(ccv) {
