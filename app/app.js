@@ -1,5 +1,6 @@
 import express from 'express';
 import multer from 'multer';
+import bodyParser from 'body-parser';
 import path from 'path';
 
 import {CSV} from './lib/csv';
@@ -42,6 +43,9 @@ app.use('/components', express.static('bower_components'));
 app.use('/favi', express.static('favi'));
 app.use('/css', express.static('css'));
 
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -76,11 +80,11 @@ app.post('/upload', upload.single('file'), (req, res) => {
 });
 
 app.post('/transform', (req, res) => {
-  const transaction = JSON.parse(req.body);
-  const pathname = path.join(__dirname, 'upload', transaction.pathname);
+  const transaction = req.body;
+  const pathname = path.join(__dirname, transaction.pathname);
   const transformers = CSV.createTransformer(transaction.selectors, types);
-  const newPath = CSV.tranformCSV(pathname, transformers);
-  return req.sendFile(path.join(__dirname, 'upload', newPath));
+  return CSV.transformCSV(pathname, transformers)
+    .then(newPath => res.sendFile(newPath));
 });
 
 // Do "hot-reloading" of express stuff on the server
